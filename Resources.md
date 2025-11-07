@@ -85,6 +85,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 [A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence, H. Gao et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/tree/main/agentic_designs/articles/self_evolving_agents)
 
+[Introducing Nested Learning: A new ML paradigm for continual learning, Ali Behrouz, Vahab Mirrokni, 2025](https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/)
+
 ## classes on agentic designs
 
 [Agentic DeepResearch with LangGraph at LangChain Academy](https://academy.langchain.com/courses/take/deep-research-with-langgraph/lessons/67513388-course-overview) 

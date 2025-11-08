@@ -14,23 +14,17 @@
 
 [Building Agentic Adaptive RAG with LangGraph for Production, P. Agnihotri, Medium, 2025](https://ai.plainenglish.io/building-agentic-rag-with-langgraph-mastering-adaptive-rag-for-production-c2c4578c836a)
 
-  pdf version: [here](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Building_Agentic_Adaptive_RAG_with_LangGraph_for_Production_by_Piyush_Agnihotri_2025.pdf)
-
-  github repo: https://github.com/piyushagni5/langgraph-ai/tree/main/agentic-rag/agentic-rag-systems
+    github repo: https://github.com/piyushagni5/langgraph-ai/tree/main/agentic-rag/agentic-rag-systems
 
 [Building and Optimizing Multi-Agent RAG Systems with DSPy and GEPA, Isaac Kargar, September, 2025, Medium](https://kargarisaac.medium.com/building-and-optimizing-multi-agent-rag-systems-with-dspy-and-gepa-2b88b5838ce2)
 
-  pdf version: [here](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Building_and_Optimizing_Multi-Agent_RAG_Systems_with_DSPy_and_GEPA_by_Isaac_Kargar_Sept_2025_Medium.pdf)
-
-  github repo: https://github.com/kargarisaac/dspy_gepa_optimization
+    github repo: https://github.com/kargarisaac/dspy_gepa_optimization
 
 [Building Multi-Agent AI App with Google’s A2A (Agent2Agent) Protocol, ADK, and MCP, Arjun Prabhulal, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Building_Multi-Agent_with_Google_A2A_Protocol_ADK_and_MCP-Deep_Dive_AI_Cloud_Lab_Medium_2025.pdf)
 
-  pdf version: [here](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Building_Multi-Agent_with_Google_A2A_Protocol_ADK_and_MCP-Deep_Dive_AI_Cloud_Lab_Medium_2025.pdf)
-
 [Memento: Fine-tuning LLM Agents without Fine-tuning LLMs, H. Zhou et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Memento-Fine-tuning_LLM_Agents_without_Fine-tuning_LLMs_Zhou_2025.pdf)
 
-related repo: https://github.com/Agent-on-the-Fly/Memento
+    github repo: https://github.com/Agent-on-the-Fly/Memento
 
 [Stop Wasting Your Tokens: Towards Efficient Runtime Multi-Agent Systems, F. Lin et al, 2025](https://github.com/nike-edaaml/genai_tutorials/blob/main/agentic_designs/articles/hypervisor/Stop_Wasting_Your_Tokens-Towards_Efficient_Runtime_Multi-Agent_Systems_Lin_2025.pdf)
 

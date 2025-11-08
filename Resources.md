@@ -10,6 +10,8 @@
 
 [Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG, A. Singh et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Agentic_Retrieval-Augmented_Generation-A_Survey_on_Agentic_RAG_Singh_2025.pdf)
 
+[Enterprise Deep Research: Steerable MultiAgent Deep Research for Enterprise Analytics, Akshara Prabhakar et al, Salesforce, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/deep_research/Enterprise_Deep_Research-Steerable_MultiAgent_Deep_Research_for_Enterprise_Analytics_Prabhakar_2025.pdf)
+
 [Building Agentic Adaptive RAG with LangGraph for Production, P. Agnihotri, Medium, 2025](https://ai.plainenglish.io/building-agentic-rag-with-langgraph-mastering-adaptive-rag-for-production-c2c4578c836a)
 
   pdf version: [here](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/Building_Agentic_Adaptive_RAG_with_LangGraph_for_Production_by_Piyush_Agnihotri_2025.pdf)
@@ -86,6 +88,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 [A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence, H. Gao et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/tree/main/agentic_designs/articles/self_evolving_agents)
 
 [Introducing Nested Learning: A new ML paradigm for continual learning, Ali Behrouz, Vahab Mirrokni, 2025](https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/)
+
+[Unlocking the Power of Multi-Agent LLM for Reasoning: from Lazy Agents to Deliberation, Zhiwei Zhang et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/Unlocking_the_Power_of_Multi-Agent_LLM_for_Reasoning-from_Lazy_Agents_to_Deliberation_Zhang_2025.pdf)
 
 ## classes on agentic designs
 

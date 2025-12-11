@@ -1,0 +1,24 @@
+# Core requirements for agentic_kpi_embeddings module
+numpy>=1.21.0
+scipy>=1.7.0
+pandas>=1.3.0
+scikit-learn>=0.24.0
+
+# Embedding providers
+sentence-transformers>=2.2.0  # Recommended for local embeddings
+
+# Optional providers (uncomment as needed)
+# openai>=1.0.0  # For OpenAI embeddings
+# cohere>=4.0.0  # For Cohere embeddings
+
+# Visualization and analysis (optional but recommended)
+matplotlib>=3.4.0
+seaborn>=0.11.0
+tqdm>=4.62.0
+
+# For Jupyter notebook support
+jupyter>=1.0.0
+ipywidgets>=7.6.0
+
+# For caching and performance
+joblib>=1.1.0

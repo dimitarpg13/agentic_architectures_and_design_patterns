@@ -57,6 +57,10 @@ Reflection Agents: Anthropic blog: https://blog.langchain.com/reflection-agents/
 
 OpenAI Agents SDK tracing module: https://openai.github.io/openai-agents-python/tracing/
 
+### Agent Systems Scaling
+
+[Towards a Science of Scaling Agent Systems, Yubin Kim et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/scaling_agents/Towards_a_Science_of_Scaling_Agent_Systems_Kim_2025.pdf)
+
 ### Agent2Agent protocol
 
 [Announcing the Agent2Agent Protocol (A2A), R. Surapaneni et al, April 9th, 2025](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)

@@ -95,6 +95,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 [Introducing Nested Learning: A new ML paradigm for continual learning, Ali Behrouz, Vahab Mirrokni, 2025](https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/)
 
+[Accelerating Scientific Discovery with Autonomous Goal-evolving Agents, Y. Du et al, Cornell U., 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/future_directions/Accelerating_Scientific_Discovery_with_Autonomous_Goal-evolving_Agents_Du_2025.pdf)
+
 [Unlocking the Power of Multi-Agent LLM for Reasoning: from Lazy Agents to Deliberation, Zhiwei Zhang et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/Unlocking_the_Power_of_Multi-Agent_LLM_for_Reasoning-from_Lazy_Agents_to_Deliberation_Zhang_2025.pdf)
 
 [Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning, Peng Xia et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evolving_agents/Agent0-Unleashing_Self-Evolving_Agents_from_Zero_Data_via_Tool-Integrated_Reasoning_Xia_2025.pdf)

@@ -103,6 +103,12 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
   github repo: https://github.com/aiming-lab/Agent0
 
+## books
+
+[Agents in the Long Game of AI: Computational Cognitive Modeling for Trustworthy Hybrid AI, M. McShane et al, 2024](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/books/Agents_in_the_Long_Game_of_AI_McShane_2024.pdf)
+
+[AI Design Patterns: Beginners Guide, Antonio Gulli, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/books/AI_Design_Patterns_A_Beginners_Guide-Gulli_2025.pdf)
+
 ## classes on agentic designs
 
 [Agentic DeepResearch with LangGraph at LangChain Academy](https://academy.langchain.com/courses/take/deep-research-with-langgraph/lessons/67513388-course-overview) 

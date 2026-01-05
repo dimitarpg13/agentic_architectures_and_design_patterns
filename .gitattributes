@@ -18,3 +18,4 @@ articles/one_tool/One_Tool_Is_Enough-Reinforcement_Learning_for_Repository-Level
 articles/future_directions/Accelerating_Scientific_Discovery_with_Autonomous_Goal-evolving_Agents_Du_2025.pdf filter=lfs diff=lfs merge=lfs -text
 books/Agents_in_the_Long_Game_of_AI_McShane_2024.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reinforcement_learning/Neuronlike_adaptive_elements_that_can_solve_difficult_learning_control_problems_Barto1983.pdf filter=lfs diff=lfs merge=lfs -text
+articles/reinforcement_learning/NIPS-1999-actor-critic-algorithms-Paper.pdf filter=lfs diff=lfs merge=lfs -text

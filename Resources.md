@@ -49,6 +49,10 @@ Reflection Agents: Anthropic blog: https://blog.langchain.com/reflection-agents/
 
 [ReflectEvo: Improving Meta Introspection of Small LLMs by Learning Self-Reflection, J. Li et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reflection/ReflectEvo-Improving_Meta_Introspection_of_Small_LLMs_by_Learning_Self-Reflection_Li_2025.pdf)
 
+### Evaluation of Agents
+
+[The Illusion of Insight in Reasoning Models, Liv G. d’Aliberti, Manoel Horta Ribeiro, Princeton U, 2026 (with algorithms for detecting 'Aha!' moments in the Appendix](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/The_Illusion_of_Insight_in_Reasoning_Models_dAlberti_2026.pdf)
+
 ### Interpretability and Tracing
 
 [Tracing the thoughts of a large language model, Anthropic blog, 2025](https://www.anthropic.com/research/tracing-thoughts-language-model)

@@ -19,3 +19,4 @@ articles/future_directions/Accelerating_Scientific_Discovery_with_Autonomous_Goa
 books/Agents_in_the_Long_Game_of_AI_McShane_2024.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reinforcement_learning/Neuronlike_adaptive_elements_that_can_solve_difficult_learning_control_problems_Barto1983.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reinforcement_learning/NIPS-1999-actor-critic-algorithms-Paper.pdf filter=lfs diff=lfs merge=lfs -text
+articles/reinforcement_learning/Survey_of_Actor-Critic_Reinforcement_Learning-Standard_and_Natural_Policy_Gradients_Grondman_2012.pdf filter=lfs diff=lfs merge=lfs -text

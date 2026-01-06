@@ -73,6 +73,8 @@ OpenAI Agents SDK tracing module: https://openai.github.io/openai-agents-python/
 
 [Adaptation of Agentic AI, P. Jiang et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/adaptation/Adaptation_of_Agentic_AI_Jiang_2025.pdf)
 
+related repo: https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI
+
 ### Agent2Agent protocol
 
 [Announcing the Agent2Agent Protocol (A2A), R. Surapaneni et al, April 9th, 2025](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)

@@ -75,9 +75,12 @@ OpenAI Agents SDK tracing module: https://openai.github.io/openai-agents-python/
 
 related repo: https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI
 
-### Agent Drift
+### Agent Drift in Multi-Agent Systems and Agent Loops
 
 [Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions, Abhishek Rath, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/agent_drift/Agent_Drift-Quantifying_Behavioral_Degradation_in_Multi-Agent_LLM_Systems_Over_Extended_Interactions_Rath_2026.pdf)
+
+[Dynamics of Agentic Loops in Large Language Models: A Geometric Theory of Trajectories: From Semantic Contraction to Exploratory Divergence, N. Tacheny, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/agent_drift/Dynamics_of_Agentic_Loops_in_Large_Language_Models-A_Geometric_Theory_of_Trajectories_Tacheny_2025.pdf)
+
 
 ### Agent2Agent protocol
 

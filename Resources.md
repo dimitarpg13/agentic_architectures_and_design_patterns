@@ -81,6 +81,8 @@ related repo: https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI
 
 [Dynamics of Agentic Loops in Large Language Models: A Geometric Theory of Trajectories: From Semantic Contraction to Exploratory Divergence, N. Tacheny, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/agent_drift/Dynamics_of_Agentic_Loops_in_Large_Language_Models-A_Geometric_Theory_of_Trajectories_Tacheny_2025.pdf)
 
+Phase Loop Dynamics - A Runtime Phase Model for Stable LLM Agent Execution: https://github.com/kiyoshisasano/agent-pld-metrics
+
 
 ### Agent2Agent protocol
 

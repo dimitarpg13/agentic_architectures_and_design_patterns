@@ -1119,3 +1119,4 @@ Input → Extract Numbers → Bi-Encoder Retrieval → Cross-Encoder Re-ranking 
 | Explainability | Scores only | Can explain reasoning |
 | Offline Capable | ✅ Yes | ❌ No |
 
+

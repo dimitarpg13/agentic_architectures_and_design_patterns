@@ -116,6 +116,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 [Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning, Peng Xia et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evolving_agents/Agent0-Unleashing_Self-Evolving_Agents_from_Zero_Data_via_Tool-Integrated_Reasoning_Xia_2025.pdf)
 
+[Dr. Zero: Self-Evolving Search Agents without Training Data, Z. Yue et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evolving_agents/Dr_Zero-Self-Evolving_Search_Agents_without_Training_Data_Yue_2026.pdf)
+
   github repo: https://github.com/aiming-lab/Agent0
 
 ## books

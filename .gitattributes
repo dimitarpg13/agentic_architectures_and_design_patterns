@@ -27,3 +27,4 @@ articles/reinforcement_learning/NaturalActorCritic_Peters_2005.pdf filter=lfs di
 articles/agent_drift/Learning_under_Concept_Drift-A_Review_Lu_2020.pdf filter=lfs diff=lfs merge=lfs -text
 articles/agent_drift/Dynamics_of_Agentic_Loops_in_Large_Language_Models-A_Geometric_Theory_of_Trajectories_Tacheny_2025.pdf filter=lfs diff=lfs merge=lfs -text
 articles/evolving_agents/Dr_Zero-Self-Evolving_Search_Agents_without_Training_Data_Yue_2026.pdf filter=lfs diff=lfs merge=lfs -text
+articles/reasoning_agents/Agentic_Reasoning_for_Large_Language_Models_Wei_2026.pdf filter=lfs diff=lfs merge=lfs -text

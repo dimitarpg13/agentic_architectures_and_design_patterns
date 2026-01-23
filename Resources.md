@@ -110,6 +110,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 [Agentic Reasoning for Large Language Models, T. Wei et al, UIUC, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/Agentic_Reasoning_for_Large_Language_Models_Wei_2026.pdf)
 
+  github repo: https://github.com/weitianxin/Awesome-Agentic-Reasoning
+
 #### Self-Evolving Agents
 
 [A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence, H. Gao et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/tree/main/agentic_designs/articles/self_evolving_agents)

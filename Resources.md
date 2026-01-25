@@ -138,6 +138,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 [Latent Collaboration in Multi-Agent Systems, J. Zou et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/latent_colaboration_mas/Latent_Collaboration_in_Multi-Agent_Systems_Zou_2025.pdf)
 
+  github repo: https://github.com/Gen-Verse/LatentMAS
+
 ## books
 
 [Agents in the Long Game of AI: Computational Cognitive Modeling for Trustworthy Hybrid AI, M. McShane et al, 2024](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/books/Agents_in_the_Long_Game_of_AI_McShane_2024.pdf)

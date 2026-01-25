@@ -106,6 +106,10 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 ### Future Directions
 
+#### Higher Order Representations
+
+[Higher Order Representations for Agentic Scientific Reasoning, Isabella A. Stewart et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/hypergraphs/Higher-Order_Knowledge_Representations_for_Agentic_Scientific_Reasoning_Stewart_2026.pdf)
+
 #### Reasoning Agents
 
 [Agentic Reasoning for Large Language Models, T. Wei et al, UIUC, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/Agentic_Reasoning_for_Large_Language_Models_Wei_2026.pdf)
@@ -129,6 +133,10 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 [Dr. Zero: Self-Evolving Search Agents without Training Data, Z. Yue et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evolving_agents/Dr_Zero-Self-Evolving_Search_Agents_without_Training_Data_Yue_2026.pdf)
 
   github repo: https://github.com/facebookresearch/drzero
+
+#### Latent Space Collaboration in Multi-Agent Systems
+
+[Latent Collaboration in Multi-Agent Systems, J. Zou et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/latent_colaboration_mas/Latent_Collaboration_in_Multi-Agent_Systems_Zou_2025.pdf)
 
 ## books
 

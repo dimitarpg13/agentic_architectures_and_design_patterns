@@ -53,6 +53,24 @@ Reflection Agents: Anthropic blog: https://blog.langchain.com/reflection-agents/
 
 [The Illusion of Insight in Reasoning Models, Liv G. d’Aliberti, Manoel Horta Ribeiro, Princeton U, 2026 (with algorithms for detecting 'Aha!' moments in the Appendix](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/The_Illusion_of_Insight_in_Reasoning_Models_dAlberti_2026.pdf)
 
+#### Evaluation of Inference with Conflicting Knowledge
+
+[RAG Collapses: Reasoning with Conflicting Knowledge, DiscoverAI, Jan 25, 2026](https://www.youtube.com/watch?v=BmzdS-a-G8g)
+
+[Tracking the Limits of Knowledge Propagation: How LLMs Fail at Multi-Step Reasoning with Conflicting Knowledge, Y. Feng et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evaluation/Tracking_the_Limits_of_Knowledge_Propagation-How_LLMs_Fail_at_Multi-Step_Reasoning_with_Conflicting_Knowledge_Feng_2026.pdf)
+
+  github repo: https://github.com/Wind-2375-like/crack
+
+[Unraveling Misinformation Propagation in LLM Reasoning, Y. Feng et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evaluation/Unraveling_Misinformation_Propagation_in_LLM_Reasoning_Feng_2025.pdf)
+
+  github repo: https://github.com/Wind-2375-like/misinfo-prop
+
+[Untangle the Knot: Interweaving Conflicting Knowledge and Reasoning Skills in Large Language Models, Y. Liu et al, 2024](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/evaluation/Untangle_the_Knot-Interweaving_Conflicting_Knowledge_and_Reasoning_Skills_in_Large_Language_Models_Liu_2024.pdf)
+
+  github repo: https://github.com/THU-KEG/KNOT
+
+
+
 ### Interpretability and Tracing
 
 [Tracing the thoughts of a large language model, Anthropic blog, 2025](https://www.anthropic.com/research/tracing-thoughts-language-model)

@@ -29,3 +29,4 @@ articles/agent_drift/Dynamics_of_Agentic_Loops_in_Large_Language_Models-A_Geomet
 articles/evolving_agents/Dr_Zero-Self-Evolving_Search_Agents_without_Training_Data_Yue_2026.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reasoning_agents/Agentic_Reasoning_for_Large_Language_Models_Wei_2026.pdf filter=lfs diff=lfs merge=lfs -text
 articles/hypergraphs/Higher-Order_Knowledge_Representations_for_Agentic_Scientific_Reasoning_Stewart_2026.pdf filter=lfs diff=lfs merge=lfs -text
+articles/latent_colaboration_mas/Latent_Collaboration_in_Multi-Agent_Systems_Zou_2025.pdf filter=lfs diff=lfs merge=lfs -text

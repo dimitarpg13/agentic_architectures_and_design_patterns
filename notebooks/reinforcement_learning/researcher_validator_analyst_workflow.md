@@ -52,8 +52,9 @@ User Query: "Should we adopt GraphRAG for our search system?"
                   Final Output
 ```
 
-Validator Agent's Unique Value
-Evidence Traceability
+### Validator Agent's Unique Value
+
+**Evidence Traceability**
 The validator ensures every claim in the analyst's output can be traced to specific research findings:
 
 ```python
@@ -88,6 +89,8 @@ Critical for catching when the analyst:
 
 * Creates synthetic "facts" from pattern matching
 
+
+### LangGraph Implementation Pattern
 
 
 ```python

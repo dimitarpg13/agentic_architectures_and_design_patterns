@@ -124,6 +124,10 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
 ### Future Directions
 
+#### Macroscopic Behavior and Dynamics of Agentic Systems
+
+[Detailed balance in large language model-driven agents, ZY Song et al, Peking U., 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/potential_function_in_LLM_agents/Detailed_balance_in_large_language_model-driven_agents_Song_2025.pdf)
+
 #### Higher Order Representations
 
 [Higher Order Representations for Agentic Scientific Reasoning, Isabella A. Stewart et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/hypergraphs/Higher-Order_Knowledge_Representations_for_Agentic_Scientific_Reasoning_Stewart_2026.pdf)

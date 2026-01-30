@@ -687,7 +687,7 @@ flowchart TD
         Proceed[Get Q-Values] --> Random{random less than<br/>epsilon?}
         
         Random -->|Yes| RandomSelect[Random Tool<br/>Selection]
-        Random -->|No| GreedySelect[argmax(Q[state])]
+        Random -->|No| GreedySelect[Select Best Tool<br/>from Q-Table]
         
         RandomSelect --> ExecuteTool
         GreedySelect --> ExecuteTool

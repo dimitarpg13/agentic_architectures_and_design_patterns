@@ -52,6 +52,44 @@ User Query: "Should we adopt GraphRAG for our search system?"
                   Final Output
 ```
 
+Validator Agent's Unique Value
+Evidence Traceability
+The validator ensures every claim in the analyst's output can be traced to specific research findings:
+
+```python
+# Pseudocode for validation check
+for claim in analyst_output.claims:
+    if not validator.find_supporting_evidence(claim, research_findings):
+        validator.flag_issue(claim, "Unsupported assertion")
+```
+
+**Logical Consistency Checks**
+
+* **Internal contradictions**: "The analysis says GraphRAG is cost-effective but also recommends against it due to high costs"
+
+* **Reasoning gaps**: "Conclusion X doesn't follow from premises A and B"
+
+* **Scope violations**: Analyst making claims beyond what research covered
+
+**Quantitative Validation**
+
+* Cross-check numerical claims (e.g., "30% performance improvement") against source data
+
+* Verify calculations in cost estimates
+
+* Ensure benchmark comparisons are apples-to-apples
+
+**Hallucination Detection**
+Critical for catching when the analyst:
+
+* Invents technical details not in research
+
+* Misattributes features to wrong tools
+
+* Creates synthetic "facts" from pattern matching
+
+
+
 ```python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, List

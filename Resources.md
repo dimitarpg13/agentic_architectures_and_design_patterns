@@ -69,7 +69,11 @@ Reflection Agents: Anthropic blog: https://blog.langchain.com/reflection-agents/
 
   github repo: https://github.com/THU-KEG/KNOT
 
+# Context Engineering
 
+[Agent Context Engineering, Ludovico Bessi, online blog, Feb 1st, 2026](https://machinelearningatscale.substack.com/p/agent-context-engineering)
+
+[Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models, Q. Zhang et al, 2025]()
 
 ### Interpretability and Tracing
 

@@ -87,6 +87,8 @@ OpenAI Agents SDK tracing module: https://openai.github.io/openai-agents-python/
 
 [Memory in the Age of AI Agents: A Survey, Forms, Functions and Dynamics, Y. Hu et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/memory_in_agentic_systems/Memory_in_the_Age_of_AI_Agents-A_Survey_Hu_2025.pdf)
 
+[Beyond RAG for Agent Memory: Retrieval by Decoupling and Aggregation, Z. Hu et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/memory_in_agentic_systems/Beyond_RAG_for_Agent_Memory-Retrieval_by_Decoupling_and_Aggregation_Hu_2026.pdf)
+
 ### Agent Systems Scaling
 
 [Towards a Science of Scaling Agent Systems, Yubin Kim et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/scaling_agents/Towards_a_Science_of_Scaling_Agent_Systems_Kim_2025.pdf)

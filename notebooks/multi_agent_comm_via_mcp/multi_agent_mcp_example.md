@@ -430,7 +430,7 @@ flowchart TD
     G --> I
     H --> I
     
-    I --> J["Extract quoted text<br/>\"...\" or '...'"]
+    I --> J["Extract quoted text<br/>using double or single quotes"]
     
     J --> K{"'uppercase' or 'upper'<br/>in goal?"}
     K -->|Yes| L["wants_upper = True"]
@@ -551,7 +551,7 @@ This diagram shows a complete example execution.
 ```mermaid
 flowchart TD
     subgraph UserInput["👤 User Input"]
-        GOAL["'Compute the average of 10, 20, 30<br/>and extract keywords and uppercase<br/>the phrase \"Agents coordinate via MCP messages\"'"]
+        GOAL["Compute the average of 10, 20, 30<br/>and extract keywords and uppercase<br/>the phrase: Agents coordinate via MCP messages"]
     end
 
     subgraph Planning["📋 Planning"]

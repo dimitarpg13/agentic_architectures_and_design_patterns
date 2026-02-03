@@ -1,4 +1,4 @@
-## Context Window Optimization and Management via Reinforcement Learning
+## Context Optimization and Management via Reinforcement Learning
 
 Context prioritization is a sequential decision problem with unique characteristics:
 

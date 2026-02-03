@@ -1,6 +1,6 @@
 # Multi-Agent Supervisor-Worker Design Pattern with MCP-style Messaging - Architecture Documentation
 
-This document provides comprehensive UML diagrams and flowcharts describing the architecture and workflow of the Multi-Agent Supervisor system using Model Context Protocol (MCP) style messaging patterns.
+This document provides comprehensive UML diagrams and flowcharts describing the architecture and workflow of the Multi-Agent Supervisor-Worker design pattern and mock workflow using Model Context Protocol (MCP) style messaging patterns.
 
 ---
 

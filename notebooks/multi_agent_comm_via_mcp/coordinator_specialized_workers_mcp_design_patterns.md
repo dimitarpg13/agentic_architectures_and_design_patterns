@@ -1,6 +1,6 @@
-# Multi-Agent System with MCP (Model Context Protocol) - Architecture Documentation
+# Design Patterns for an Agent Coordinator Communicating With Specialized Worker Agents via MCP - Architecture Documentation
 
-This document provides comprehensive UML diagrams and flowcharts describing the architecture and workflow of the Multi-Agent System using Model Context Protocol (MCP) for inter-agent communication, resource sharing, and workflow orchestration.
+This document provides comprehensive UML diagrams and flowcharts describing the architecture and workflow of the Multi-Agent System of a Coordinator and Specialized Workers using Model Context Protocol (MCP) for inter-agent communication, resource sharing, and workflow orchestration.
 
 ---
 

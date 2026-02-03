@@ -77,7 +77,7 @@ Prompt optimization is typically a low-dimensional discrete problem with immedia
 
 * **PPO/Deep RL**: Only needed for continuous parameters or very large action spaces
 
-The notebook at [prompt_optimization/agentic_rl_workflow.ipynb](https://github.com/nike-edaaml/genai_tutorials/blob/main/agentic_designs/notebooks/reinforcement_learning/prompt_optimization/agentic_rl_workflow.ipynb) implements both bandit approaches and Q-Learning for this exact use case.
+The notebook at [prompt_optimization/agentic_rl_workflow.ipynb](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/notebooks/reinforcement_learning/prompt_optimization/agentic_rl_workflow.ipynb) implements both bandit approaches and Q-Learning for this exact use case.
 
 
 

@@ -42,3 +42,4 @@ articles/bdi_model/Intention_Plans_and_Practical_Reason_Bratman_1999.pdf filter=
 articles/bdi_model/Mindscapes_Philosophy_Science_and_the_Mind_Martin_Carrier_1997.pdf filter=lfs diff=lfs merge=lfs -text
 articles/bdi_model/Integrated_Control_and_Coordinated_Behaviour-A_Case_for_Agent_Models_Ferguson_1995.pdf filter=lfs diff=lfs merge=lfs -text
 articles/bdi_model/Intelligent_planning_A_decomposition_and_abstraction_based_approach_to_classical_planning_Rao_Georgeff_ICMAS_1995.pdf filter=lfs diff=lfs merge=lfs -text
+articles/bdi_model/Belief_States_for_Cooperative_Multi-Agent_Reinforcement_Learning_under_Partial_Observability_Pritz_2025.pdf filter=lfs diff=lfs merge=lfs -text

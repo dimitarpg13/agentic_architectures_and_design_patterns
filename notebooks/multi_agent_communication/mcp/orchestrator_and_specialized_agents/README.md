@@ -32,6 +32,6 @@ ANTHROPIC_MODEL=claude-3-5-sonnet-latest
 
 Open and run:
 
-`notebooks/multi_agent_workflow/mcp/langgraph_mcp_multi_agent_workflow.ipynb`
+`notebooks/multi_agent_communication/mcp/orchestrator_and_specialized_agents/langgraph_mcp_multi_agent_workflow.ipynb`
 
 

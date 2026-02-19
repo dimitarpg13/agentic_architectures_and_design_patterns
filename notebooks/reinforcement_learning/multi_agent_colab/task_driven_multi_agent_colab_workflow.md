@@ -1,6 +1,6 @@
 # Task-Driven Agentic Workflow Visualization
 
-This document provides comprehensive UML diagrams and flowcharts to visualize the task-driven agentic work distribution in the reinforcement learning workflow defined in `agentic_rl_workflow.ipynb`.
+This document provides comprehensive UML diagrams and flowcharts to visualize the task-driven agentic work distribution in the reinforcement learning workflow defined in `simulated_agentic_rl_workflow.ipynb`.
 
 ## Table of Contents
 1. [System Overview](#1-system-overview)

@@ -1,0 +1,43 @@
+[project]
+name = "mcp-multi-agent-workflow-example"
+version = "0.1.0"
+description = "Example of an orchestrated multi-agent workflow using MCP tools and OpenAI/Anthropic LLMs."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.57.1",
+  "mcp>=1.13.0",
+  "openai>=1.100.0",
+  "python-dotenv>=1.0.1",
+]
+
+[project.scripts]
+mcp-multi-agent = "main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# This example uses a flat module layout in this directory (no package folder),
+# so we explicitly declare which files should be shipped.
+only-include = [
+  "__init__.py",
+  "agents.py",
+  "analytics_tools_server.py",
+  "config.py",
+  "llm.py",
+  "main.py",
+  "mcp_client.py",
+  "orchestrator.py",
+  "research_tools_server.py",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "*.py",
+  "README.md",
+  "pyproject.toml",
+]
+
+

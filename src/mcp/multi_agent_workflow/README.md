@@ -19,7 +19,7 @@ This example demonstrates:
 ## Setup with uv
 
 ```bash
-cd /Users/dimitargueorguiev/git/ml/agentic_architectures_and_design_patterns/src/mcp/multi_agent_workflow
+cd /<your_path_to_folder>/agentic_architectures_and_design_patterns/src/mcp/multi_agent_workflow
 uv sync
 ```
 
@@ -29,7 +29,7 @@ This creates a local virtual environment (`.venv`) based on `pyproject.toml`.
 
 Create `.env` at the repository root:
 
-`/Users/dimitargueorguiev/git/ml/agentic_architectures_and_design_patterns/.env`
+`/<your_path_to_folder>/agentic_architectures_and_design_patterns/.env`
 
 ```env
 LLM_PROVIDER=openai

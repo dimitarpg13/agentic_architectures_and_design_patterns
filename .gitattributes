@@ -47,3 +47,4 @@ articles/bdi_model/agent_behaviors_and_the_BDI_model_Khamis_2020_slides.pdf filt
 articles/bdi_model/Classification_and_Clustering_BFTA2019_Thierry_Denceux_Lecture3.pdf filter=lfs diff=lfs merge=lfs -text
 articles/bdi_model/Intro_to_Belief_Functions_BFTA2019_Thierry_Denceux_Lecture1.pdf filter=lfs diff=lfs merge=lfs -text
 articles/bdi_model/Methods_for_Building_Belief_Functions_BFTA2019_Thierry_Denceux_Lecture2.pdf filter=lfs diff=lfs merge=lfs -text
+articles/reinforcement_learning/Multi_Agent_Reinforcement_Learning_Albrecht_2024.pdf filter=lfs diff=lfs merge=lfs -text

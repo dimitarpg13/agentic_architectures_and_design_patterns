@@ -186,11 +186,11 @@ Worth adding as an optional node after the Validator: Rosenbaum bounds for L2, o
 
 ```mermaid
 graph TD
-    LG[LangGraph\nState machine & orchestration]
-    MLF[MLflow\nTracking estimand · estimator · results]
-    DE[DoWhy / EconML\nEstimation backend for L2 agent]
-    PGM[pgmpy / CausalNex\nDAG manipulation in Validator]
-    PPL[Pyro / NumPyro\nSCM specification & L3 abduction via MCMC]
+    LG["LangGraph<br/>State machine & orchestration"]
+    MLF["MLflow<br/>Tracking estimand · estimator · results"]
+    DE["DoWhy / EconML<br/>Estimation backend for L2 agent"]
+    PGM["pgmpy / CausalNex<br/>DAG manipulation in Validator"]
+    PPL["Pyro / NumPyro<br/>SCM specification & L3 abduction via MCMC"]
 
     LG --> MLF
     LG --> DE

@@ -82,16 +82,16 @@ A persistent state object (LangGraph `StateGraph` state or external store) holdi
 
 ```mermaid
 flowchart TD
-    V([Validator receives analysis result]) --> C1{Identifiability\nconditions met?}
-    C1 -- No --> F1[Flag: non-identifiable\nSuggest IV or sensitivity analysis]
-    C1 -- Yes --> C2{Positivity /\noverlap plausible?}
-    C2 -- No --> F2[Flag: positivity violation\nSuggest trimming or reweighting]
-    C2 -- Yes --> C3{Estimator matches\nestimand?}
-    C3 -- No --> F3[Flag: estimator mismatch\nRecommend correction]
-    C3 -- Yes --> C4{Unmeasured confounders\nthreatening validity?}
-    C4 -- Yes --> F4[Flag: run sensitivity analysis\nE-values / Rosenbaum bounds]
-    C4 -- No --> PASS([ValidationResult: PASS\nProceed to Synthesizer])
-    F1 & F2 & F3 & F4 --> REROUTE([Re-route to Orchestrator\nor fail gracefully])
+    V(["Validator receives analysis result"]) --> C1{"Identifiability<br/>conditions met?"}
+    C1 -- No --> F1["Flag: non-identifiable<br/>Suggest IV or sensitivity analysis"]
+    C1 -- Yes --> C2{"Positivity /<br/>overlap plausible?"}
+    C2 -- No --> F2["Flag: positivity violation<br/>Suggest trimming or reweighting"]
+    C2 -- Yes --> C3{"Estimator matches<br/>estimand?"}
+    C3 -- No --> F3["Flag: estimator mismatch<br/>Recommend correction"]
+    C3 -- Yes --> C4{"Unmeasured confounders<br/>threatening validity?"}
+    C4 -- Yes --> F4["Flag: run sensitivity analysis<br/>E-values / Rosenbaum bounds"]
+    C4 -- No --> PASS(["ValidationResult: PASS<br/>Proceed to Synthesizer"])
+    F1 & F2 & F3 & F4 --> REROUTE(["Re-route to Orchestrator<br/>or fail gracefully"])
 ```
 
 It checks: are the required identifiability conditions met? Are positivity/overlap assumptions plausible? Does the estimator match the estimand? Are there unmeasured confounders that invalidate the analysis? It returns a structured `ValidationResult` that can trigger re-routing (e.g., *"L2 not identified — suggest instrumental variable approach or sensitivity analysis"*).

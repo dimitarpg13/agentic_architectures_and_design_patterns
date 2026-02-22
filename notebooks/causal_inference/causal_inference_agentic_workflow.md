@@ -166,12 +166,12 @@ The DAG/SCM lives in shared state and can be updated mid-workflow. If the user s
 
 ```mermaid
 flowchart LR
-    L3_req([L3 requested]) --> SCM_check{SCM fully\nspecified?}
-    SCM_check -- Yes --> L3_full[Full counterfactual estimate]
-    SCM_check -- No --> degrade[Degrade to L2\nReport bounds]
-    degrade --> L2_check{L2 identified?}
-    L2_check -- Yes --> L2_est[ATE / ATT estimate]
-    L2_check -- No --> L1_obs[Report associational result\nwith strong caveats]
+    L3_req([L3 requested]) --> SCM_check{"SCM fully<br/>specified?"}
+    SCM_check -- Yes --> L3_full["Full counterfactual estimate"]
+    SCM_check -- No --> degrade["Degrade to L2<br/>Report bounds"]
+    degrade --> L2_check{"L2 identified?"}
+    L2_check -- Yes --> L2_est["ATE / ATT estimate"]
+    L2_check -- No --> L1_obs["Report associational result<br/>with strong caveats"]
 ```
 
 When L3 is requested but the SCM is unavailable, the system doesn't fail — it drops to L2 and reports bounds, clearly communicating the limitation.

@@ -8,19 +8,19 @@ Given Pearl's causal ladder (Association → Intervention → Counterfactual), t
 
 ```mermaid
 flowchart TD
-    Q([User Question]) --> O[Orchestrator\nParses question, classifies ladder rung, routes]
-    O --> R[Ladder Router L1 / L2 / L3]
-    R --> L1["L1 Association Agent\nP(Y | X)"]
-    R --> L2["L2 Intervention Agent\nP(Y | do(X))"]
-    R --> L3["L3 Counterfactual Agent\nP(Y_x | X=x', Y=y')"]
-    L1 --> CTX[(Shared Context Store\nSCM · DAG · Data · Assumptions)]
+    Q(["User Question"]) --> O["Orchestrator<br/>Parses question, classifies ladder rung, routes"]
+    O --> R["Ladder Router L1 / L2 / L3"]
+    R --> L1["L1 Association Agent<br/>P(Y | X)"]
+    R --> L2["L2 Intervention Agent<br/>P(Y | do(X))"]
+    R --> L3["L3 Counterfactual Agent<br/>P(Y_x | X=x', Y=y')"]
+    L1 --> CTX[("Shared Context Store<br/>SCM · DAG · Data · Assumptions")]
     L2 --> CTX
     L3 --> CTX
-    CTX --> V[Validator Agent\nIdentifiability · Assumptions · Estimand check]
-    V -- pass --> S[Synthesizer Agent\nFinal causal report]
+    CTX --> V["Validator Agent<br/>Identifiability · Assumptions · Estimand check"]
+    V -- pass --> S["Synthesizer Agent<br/>Final causal report"]
     V -- re-route --> O
     V -- fail / non-identifiable --> S
-    S --> OUT([Causal Report])
+    S --> OUT(["Causal Report"])
 ```
 
 ---

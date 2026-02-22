@@ -10,9 +10,9 @@ Given Pearl's causal ladder (Association → Intervention → Counterfactual), t
 flowchart TD
     Q([User Question]) --> O[Orchestrator\nParses question, classifies ladder rung, routes]
     O --> R[Ladder Router L1 / L2 / L3]
-    R --> L1[L1 Association Agent\nP&#40Y | X&#41]
-    R --> L2[L2 Intervention Agent\nP&#40Y | do&#40X&#41&#41]
-    R --> L3[L3 Counterfactual Agent\nP&#40Y_x | X=x', Y=y'&#41]
+    R --> L1["L1 Association Agent\nP(Y | X)"]
+    R --> L2["L2 Intervention Agent\nP(Y | do(X))"]
+    R --> L3["L3 Counterfactual Agent\nP(Y_x | X=x', Y=y')"]
     L1 --> CTX[(Shared Context Store\nSCM · DAG · Data · Assumptions)]
     L2 --> CTX
     L3 --> CTX

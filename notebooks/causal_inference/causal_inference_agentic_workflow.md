@@ -36,31 +36,31 @@ Classifies the incoming question into a rung of the ladder using a structured pr
 ### 2. Ladder Router & Rung Agents
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph L1["L1 — Association Agent · P(Y | X)"]
         direction TB
-        A1[Identify confounders\nfrom DAG] --> A2[Select statistical method\nCI tests · regression · partial corr]
-        A2 --> A3[Run analysis]
-        A3 --> A4[Flag spurious vs.\npotentially causal]
+        A1["Identify confounders<br/>from DAG"] --> A2["Select statistical method<br/>CI tests · regression · partial corr"]
+        A2 --> A3["Run analysis"]
+        A3 --> A4["Flag spurious vs.<br/>potentially causal"]
     end
 
     subgraph L2["L2 — Intervention Agent · P(Y | do(X))"]
         direction TB
-        B1[Check identifiability\nback-door / front-door / do-calculus] --> B2[Select estimator\nIPW · Matching · AIPW · IV]
-        B2 --> B3[Estimate ATE / ATT\nwith CIs]
-        B3 --> B4{Identified?}
-        B4 -- No --> B5[Escalate to Orchestrator\nrequest assumptions]
-        B4 -- Yes --> B6[Return result]
+        B1["Check identifiability<br/>back-door / front-door / do-calculus"] --> B2["Select estimator<br/>IPW · Matching · AIPW · IV"]
+        B2 --> B3["Estimate ATE / ATT<br/>with CIs"]
+        B3 --> B4{"Identified?"}
+        B4 -- No --> B5["Escalate to Orchestrator<br/>request assumptions"]
+        B4 -- Yes --> B6["Return result"]
     end
 
     subgraph L3["L3 — Counterfactual Agent · P(Y_x | X=x', Y=y')"]
         direction TB
-        C1[Require fully specified SCM] --> C2[Abduction\nInfer exogenous U from obs]
-        C2 --> C3[Action\nModify SCM per do-operator]
-        C3 --> C4[Prediction\nPropagate forward]
-        C4 --> C5{SCM specified?}
-        C5 -- No --> C6[Fall back to bounds\nManski / Monotonicity]
-        C5 -- Yes --> C7[Unit-level counterfactual estimate]
+        C1["Require fully specified SCM"] --> C2["Abduction<br/>Infer exogenous U from obs"]
+        C2 --> C3["Action<br/>Modify SCM per do-operator"]
+        C3 --> C4["Prediction<br/>Propagate forward"]
+        C4 --> C5{"SCM specified?"}
+        C5 -- No --> C6["Fall back to bounds<br/>Manski / Monotonicity"]
+        C5 -- Yes --> C7["Unit-level counterfactual estimate"]
     end
 ```
 

@@ -39,6 +39,7 @@ Classifies the incoming question into a rung of the ladder using a structured pr
 flowchart TB
     subgraph L1["L1 — Association Agent · P(Y | X)"]
         direction TB
+        L1_pad[ ] ~~~ A1
         A1["Identify confounders<br/>from DAG"] --> A2["Select statistical method<br/>CI tests · regression · partial corr"]
         A2 --> A3["Run analysis"]
         A3 --> A4["Flag spurious vs.<br/>potentially causal"]
@@ -46,6 +47,7 @@ flowchart TB
 
     subgraph L2["L2 — Intervention Agent · P(Y | do(X))"]
         direction TB
+        L2_pad[ ] ~~~ B1
         B1["Check identifiability<br/>back-door / front-door / do-calculus"] --> B2["Select estimator<br/>IPW · Matching · AIPW · IV"]
         B2 --> B3["Estimate ATE / ATT<br/>with CIs"]
         B3 --> B4{"Identified?"}
@@ -55,6 +57,7 @@ flowchart TB
 
     subgraph L3["L3 — Counterfactual Agent · P(Y_x | X=x', Y=y')"]
         direction TB
+        L3_pad[ ] ~~~ C1
         C1["Require fully specified SCM"] --> C2["Abduction<br/>Infer exogenous U from obs"]
         C2 --> C3["Action<br/>Modify SCM per do-operator"]
         C3 --> C4["Prediction<br/>Propagate forward"]
@@ -62,6 +65,10 @@ flowchart TB
         C5 -- No --> C6["Fall back to bounds<br/>Manski / Monotonicity"]
         C5 -- Yes --> C7["Unit-level counterfactual estimate"]
     end
+
+    style L1_pad fill:none,stroke:none,color:none
+    style L2_pad fill:none,stroke:none,color:none
+    style L3_pad fill:none,stroke:none,color:none
 ```
 
 **L1 — Association Agent** handles observational questions. It identifies relevant confounders from the shared SCM/DAG context, selects appropriate statistical methods, runs analysis, and flags spurious associations vs. potentially causal ones. It explicitly marks its output as *associational only*.

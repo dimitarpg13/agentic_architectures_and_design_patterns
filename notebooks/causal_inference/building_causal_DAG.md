@@ -46,9 +46,9 @@ graph LR
     style P1_pad fill:none,stroke:none,color:none
     style P2_pad fill:none,stroke:none,color:none
     style P3_pad fill:none,stroke:none,color:none
-    style Paradigm1 fill:#1a1a2e,stroke:#e94560,color:#eee
-    style Paradigm2 fill:#1a1a2e,stroke:#0f3460,color:#eee
-    style Paradigm3 fill:#1a1a2e,stroke:#16213e,color:#eee
+    style Paradigm1 fill:#fce4ec,stroke:#e94560,color:#2d3436
+    style Paradigm2 fill:#e3f2fd,stroke:#0f3460,color:#2d3436
+    style Paradigm3 fill:#ede7f6,stroke:#16213e,color:#2d3436
 ```
 
 ---

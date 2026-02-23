@@ -165,39 +165,51 @@ The most ambitious text-to-causal-model pipeline. A strong LLM acts as a discove
 ```mermaid
 flowchart LR
     subgraph Module1["Module 1<br/>Topic Graph"]
+        M1_pad[ ] ~~~ T1
         T1["Root<br/>Topic"] --> T2["LLM-guided<br/>BFS Expansion"]
         T2 --> T3["Topic<br/>Graph"]
     end
 
     subgraph Module2["Module 2<br/>Causal Questions"]
+        M2_pad[ ] ~~~ Q1
         Q1["Per-topic<br/>prompts"] --> Q2["Causal query<br/>candidates"]
     end
 
     subgraph Module3["Module 3<br/>Causal Statements"]
+        M3_pad[ ] ~~~ S1
         S1["Structured<br/>prompts"] --> S2["'X causes Y'<br/>assertions"]
     end
 
     subgraph Module4["Module 4<br/>Triple Extraction"]
+        M4_pad[ ] ~~~ E1
         E1["OpenIE-style<br/>parsing"] --> E2["(subj, rel, obj)<br/>triples"]
     end
 
     subgraph Module5["Module 5<br/>Graph Assembly"]
+        M5_pad[ ] ~~~ G1
         G1["Directed multi-<br/>relational causal<br/>graph G"]
     end
 
     subgraph Module6["Module 6<br/>Geometric Refinement"]
+        M6_pad[ ] ~~~ R1
         R1["Geometric<br/>Transformer"] --> R2["Manifold<br/>embeddings"]
         R2 --> R3["Topos-organized<br/>slices"]
     end
 
     Module1 --> Module2 --> Module3 --> Module4 --> Module5 --> Module6
 
-    style Module1 fill:#2d3436,stroke:#74b9ff,color:#dfe6e9
-    style Module2 fill:#2d3436,stroke:#74b9ff,color:#dfe6e9
-    style Module3 fill:#2d3436,stroke:#74b9ff,color:#dfe6e9
-    style Module4 fill:#2d3436,stroke:#74b9ff,color:#dfe6e9
-    style Module5 fill:#2d3436,stroke:#74b9ff,color:#dfe6e9
-    style Module6 fill:#2d3436,stroke:#00cec9,color:#dfe6e9
+    style M1_pad fill:none,stroke:none,color:none
+    style M2_pad fill:none,stroke:none,color:none
+    style M3_pad fill:none,stroke:none,color:none
+    style M4_pad fill:none,stroke:none,color:none
+    style M5_pad fill:none,stroke:none,color:none
+    style M6_pad fill:none,stroke:none,color:none
+    style Module1 fill:#dfe6e9,stroke:#74b9ff,color:#2d3436
+    style Module2 fill:#dfe6e9,stroke:#74b9ff,color:#2d3436
+    style Module3 fill:#dfe6e9,stroke:#74b9ff,color:#2d3436
+    style Module4 fill:#dfe6e9,stroke:#74b9ff,color:#2d3436
+    style Module5 fill:#dfe6e9,stroke:#74b9ff,color:#2d3436
+    style Module6 fill:#dfe6e9,stroke:#00cec9,color:#2d3436
 ```
 
 #### ARCADIA (Scalable Causal Discovery)

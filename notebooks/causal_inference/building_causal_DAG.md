@@ -20,13 +20,15 @@ For text corpora specifically, paradigm (1) is the most direct entry point, but 
 graph LR
     subgraph Paradigm1["1 · Direct Extraction"]
         direction TB
-        T1[Text Corpus] --> LLM1["LLM Causal<br/>Extraction"]
+        P1_pad[ ] ~~~ T1
+        T1["Text Corpus"] --> LLM1["LLM Causal<br/>Extraction"]
         LLM1 --> G1["Candidate<br/>DAG"]
     end
 
     subgraph Paradigm2["2 · Post-hoc Refinement"]
         direction TB
-        D2[Observational<br/>Data] --> STAT["Statistical CD<br/>(PC / GES / NOTEARS)"]
+        P2_pad[ ] ~~~ D2
+        D2["Observational<br/>Data"] --> STAT["Statistical CD<br/>(PC / GES / NOTEARS)"]
         STAT --> DRAFT["Draft<br/>CPDAG"]
         DRAFT --> LLM2["LLM Refines<br/>Orientations"]
         LLM2 --> G2["Refined<br/>DAG"]
@@ -34,12 +36,16 @@ graph LR
 
     subgraph Paradigm3["3 · Prior Knowledge Integration"]
         direction TB
-        T3[Text + Data] --> LLM3["LLM Encodes<br/>Domain Priors"]
+        P3_pad[ ] ~~~ T3
+        T3["Text + Data"] --> LLM3["LLM Encodes<br/>Domain Priors"]
         LLM3 --> PRIOR["Soft / Hard<br/>Constraints"]
         PRIOR --> STAT3["Constrained<br/>Statistical CD"]
         STAT3 --> G3["Knowledge-Informed<br/>DAG"]
     end
 
+    style P1_pad fill:none,stroke:none,color:none
+    style P2_pad fill:none,stroke:none,color:none
+    style P3_pad fill:none,stroke:none,color:none
     style Paradigm1 fill:#1a1a2e,stroke:#e94560,color:#eee
     style Paradigm2 fill:#1a1a2e,stroke:#0f3460,color:#eee
     style Paradigm3 fill:#1a1a2e,stroke:#16213e,color:#eee

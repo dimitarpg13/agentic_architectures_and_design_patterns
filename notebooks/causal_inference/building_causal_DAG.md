@@ -448,21 +448,21 @@ sequenceDiagram
     participant ENV as Environment / Data
     participant SCM as Causal DAG (SCM)
 
-    rect rgb(45, 52, 54)
+    rect rgba(108, 117, 125, 0.15)
     Note over LLM,SCM: Learning Phase
     LLM->>ENV: Extract candidate causal<br/>variables from text observations
     ENV-->>LLM: Candidate variables +<br/>textual evidence
     LLM->>SCM: Propose initial edges
     end
 
-    rect rgb(39, 60, 117)
+    rect rgba(9, 132, 227, 0.15)
     Note over LLM,SCM: Adapting Phase
     SCM->>ENV: Interventional do-operator<br/>experiments
     ENV-->>SCM: Validate / refute<br/>proposed edges
     SCM->>SCM: Refine DAG structure
     end
 
-    rect rgb(106, 27, 154)
+    rect rgba(162, 155, 254, 0.15)
     Note over LLM,SCM: Acting Phase
     SCM->>LLM: Refined causal structure
     LLM->>LLM: Generate adaptive policies<br/>with causal-aware reward shaping

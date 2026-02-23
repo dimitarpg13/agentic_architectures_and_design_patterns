@@ -287,8 +287,8 @@ flowchart TD
     CD3 --> CR2
     D3 --> CR3
 
-    style CausalDiscovery fill:#2d3436,stroke:#e17055,color:#dfe6e9
-    style CausalRAG fill:#2d3436,stroke:#0984e3,color:#dfe6e9
+    style CausalDiscovery fill:#fce4ec,stroke:#e17055,color:#2d3436
+    style CausalRAG fill:#e3f2fd,stroke:#0984e3,color:#2d3436
 ```
 
 ---

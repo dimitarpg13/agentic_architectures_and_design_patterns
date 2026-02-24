@@ -93,7 +93,7 @@ graph TD
     end
 
     subgraph Rung3["Rung 3 — Counterfactual"]
-        R3a(["P#40;Yₓ#124;X=x&#39;, Y=y&#39;#41;"])
+        R3a(["P#40;Yₓ #124; X=x′, Y=y′#41;"])
         R3["Requires: fully specified SCM<br/>Sufficient object: SCM ⟨U, V, F, P#40;U#41;⟩"]
         R3a ~~~ R3
     end

@@ -217,22 +217,28 @@ The DAG pipeline in `building_causal_DAG.md` solves the *graph structure* proble
 
 ```mermaid
 flowchart TD
-    subgraph DAG_Challenges["DAG Challenges<br/>(solved in building_causal_DAG.md)"]
+    subgraph DAG_Challenges["DAG Challenges"]
+        DC0(["solved in building_causal_DAG.md"])
         DC1["Variable identification"]
-        DC2["Edge direction<br/>(orientation)"]
+        DC2["Edge direction<br/>#40;orientation#41;"]
         DC3["Hidden confounders"]
         DC4["Cycle prevention"]
         DC5["Markov equivalence<br/>resolution"]
+        DC0 ~~~ DC1
     end
 
-    subgraph SCM_New["Additional SCM Challenges<br/>(this document)"]
+    subgraph SCM_New["Additional SCM Challenges"]
+        SC0(["this document"])
         SC1["<b>Challenge 1</b><br/>Structural equation<br/>specification<br/><i>What is f_i?</i>"]
-        SC2["<b>Challenge 2</b><br/>Exogenous distribution<br/>modeling<br/><i>What is P(U)?</i>"]
+        SC2["<b>Challenge 2</b><br/>Exogenous distribution<br/>modeling<br/><i>What is P#40;U#41;?</i>"]
         SC3["<b>Challenge 3</b><br/>Counterfactual<br/>validation<br/><i>How to test Rung 3?</i>"]
+        SC0 ~~~ SC1
     end
 
     DAG_Challenges -->|"DAG is prerequisite<br/>input to SCM"| SCM_New
 
+    style DC0 fill:#e3f2fd,stroke:#0984e3,color:#555
+    style SC0 fill:#fce4ec,stroke:#e94560,color:#555
     style DAG_Challenges fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style SCM_New fill:#fce4ec,stroke:#e94560,color:#2d3436
     style SC1 fill:#fab1a0,stroke:#e17055,color:#2d3436

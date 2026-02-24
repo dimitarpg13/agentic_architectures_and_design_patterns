@@ -39,27 +39,31 @@ The Causal DAG — as constructed by the pipeline in `building_causal_DAG.md` �
 
 ```mermaid
 flowchart LR
-    subgraph DAG_Only["Causal DAG Only<br/>(from building_causal_DAG.md)<br/>&nbsp;"]
+    subgraph DAG_Only["Causal DAG Only"]
         direction TB
+        D0(["from building_causal_DAG.md"])
         D1["Nodes: {X, Y, Z}"]
         D2["Edges: X → Y, Z → Y"]
         D3["Confidence scores"]
         D4["Evidence map"]
-        D1 ~~~ D2 ~~~ D3 ~~~ D4
+        D0 ~~~ D1 ~~~ D2 ~~~ D3 ~~~ D4
     end
 
-    subgraph Full_SCM["Full SCM<br/>(this document)<br/>&nbsp;"]
+    subgraph Full_SCM["Full SCM"]
         direction TB
+        S0(["this document"])
         S1["Nodes: {X, Y, Z}"]
         S2["Edges: X → Y, Z → Y"]
         S3["Equations:<br/>Y = 0.7X + 0.3Z + ε"]
         S4["Noise: ε ~ N(0, σ²)"]
         S5["Abduction mechanism<br/>for counterfactuals"]
-        S1 ~~~ S2 ~~~ S3 ~~~ S4 ~~~ S5
+        S0 ~~~ S1 ~~~ S2 ~~~ S3 ~~~ S4 ~~~ S5
     end
 
     DAG_Only -->|"SCM extends DAG<br/>with quantitative layer"| Full_SCM
 
+    style D0 fill:#e3f2fd,stroke:#0984e3,color:#555
+    style S0 fill:#fce4ec,stroke:#e94560,color:#555
     style DAG_Only fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style Full_SCM fill:#fce4ec,stroke:#e94560,color:#2d3436
 ```
@@ -76,20 +80,29 @@ Pearl's causal ladder defines three levels of causal reasoning with increasing d
 
 ```mermaid
 graph TD
-    subgraph Rung1["Rung 1 — Association · P(Y | X)<br/>&nbsp;"]
+    subgraph Rung1["Rung 1 — Association"]
+        R1a(["P#40;Y#124;X#41;"])
         R1["Requires: observational data<br/>Sufficient object: joint distribution"]
+        R1a ~~~ R1
     end
 
-    subgraph Rung2["Rung 2 — Intervention · P(Y | do(X))<br/>&nbsp;"]
+    subgraph Rung2["Rung 2 — Intervention"]
+        R2a(["P#40;Y#124;do#40;X#41;#41;"])
         R2["Requires: causal DAG + data<br/>Sufficient object: DAG + identifiability conditions"]
+        R2a ~~~ R2
     end
 
-    subgraph Rung3["Rung 3 — Counterfactual · P(Yₓ | X=x', Y=y')<br/>&nbsp;"]
-        R3["Requires: fully specified SCM<br/>Sufficient object: SCM ⟨U, V, F, P(U)⟩"]
+    subgraph Rung3["Rung 3 — Counterfactual"]
+        R3a(["P#40;Yₓ#124;X=x&#39;, Y=y&#39;#41;"])
+        R3["Requires: fully specified SCM<br/>Sufficient object: SCM ⟨U, V, F, P#40;U#41;⟩"]
+        R3a ~~~ R3
     end
 
     Rung1 --> Rung2 --> Rung3
 
+    style R1a fill:#e3f2fd,stroke:#0984e3,color:#555
+    style R2a fill:#fce4ec,stroke:#e17055,color:#555
+    style R3a fill:#ede7f6,stroke:#6c5ce7,color:#555
     style Rung1 fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style Rung2 fill:#fce4ec,stroke:#e17055,color:#2d3436
     style Rung3 fill:#ede7f6,stroke:#6c5ce7,color:#2d3436

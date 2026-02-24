@@ -606,24 +606,28 @@ Functional form selection requires understanding not just individual edges but *
 
 ```mermaid
 flowchart TD
-    subgraph StandardRAG["Standard RAG (sufficient for DAGs)"]
+    subgraph StandardRAG["Standard RAG"]
         direction TB
+        SR0(["sufficient for DAGs"])
         SR1["Query: 'Does X cause Y?'"]
         SR2["Retrieve by semantic<br/>similarity to query"]
         SR3["Return top-k chunks"]
-        SR1 --> SR2 --> SR3
+        SR0 ~~~ SR1 --> SR2 --> SR3
     end
 
-    subgraph GraphRAG["GraphRAG (needed for SCMs)"]
+    subgraph GraphRAG["GraphRAG"]
         direction TB
+        GR0(["needed for SCMs"])
         GR1["Query: 'What is the mechanism X → Y?'"]
         GR2["Identify causal path<br/>X → Z₁ → Z₂ → Y in DAG"]
         GR3["Retrieve evidence for<br/>each sub-mechanism"]
         GR4["Retrieve evidence for<br/>pathway-level interactions"]
         GR5["Synthesize composite<br/>functional form"]
-        GR1 --> GR2 --> GR3 --> GR4 --> GR5
+        GR0 ~~~ GR1 --> GR2 --> GR3 --> GR4 --> GR5
     end
 
+    style SR0 fill:#636e72,stroke:#dfe6e9,color:#ccc
+    style GR0 fill:#6c5ce7,stroke:#dfe6e9,color:#ccc
     style StandardRAG fill:#636e72,stroke:#dfe6e9,color:#fff
     style GraphRAG fill:#6c5ce7,stroke:#dfe6e9,color:#fff
 ```

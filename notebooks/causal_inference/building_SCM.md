@@ -874,25 +874,32 @@ The SCM produced by this workflow is designed to be consumed by the L3 Counterfa
 
 ```mermaid
 flowchart LR
-    subgraph Build["SCM Construction Workflow<br/><i>(this document)</i>"]
+    subgraph Build["SCM Construction Workflow"]
+        direction TB
+        BH(["this document"])
         B1["DAG<br/>Builder"] --> B2["Equation<br/>Spec Agent"]
         B2 --> B3["Parameter<br/>Estimator"]
         B3 --> B4["Exogenous<br/>Dist Agent"]
         B4 --> B5["Abduction<br/>Mechanism"]
         B5 --> B6["SCM<br/>Validator"]
+        BH ~~~ B1
     end
 
     B6 --> CTX[("Shared Context Store<br/>Contains: SCM specification,<br/>DAG, confidence scores,<br/>evidence map")]
 
-    subgraph Inference["Causal Inference Workflow<br/><i>(causal_inference_agentic_workflow.md)</i>"]
+    subgraph Inference["Causal Inference Workflow"]
         direction TB
+        IH(["causal_inference_agentic_workflow.md"])
         INF1["Orchestrator"] --> INF2["L3 Counterfactual<br/>Agent"]
         INF2 --> INF3["Validator"]
         INF3 --> INF4["Synthesizer"]
+        IH ~~~ INF1
     end
 
     CTX --> INF2
 
+    style BH fill:#dfe6e9,stroke:#636e72,color:#555
+    style IH fill:#dfe6e9,stroke:#636e72,color:#555
     style CTX fill:#fdcb6e,stroke:#f39c12,color:#2d3436
 ```
 

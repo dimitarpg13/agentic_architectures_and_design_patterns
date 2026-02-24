@@ -768,7 +768,9 @@ Extending the control flow from `building_causal_DAG.md` — which routes from `
 graph TD
     START(("__start__")) --> ingest["ingest_corpus"]
 
-    subgraph DAG_Phase["Stage 1: DAG (from building_causal_DAG.md)"]
+    subgraph DAG_Phase["Stage 1: DAG"]
+        DAG_hdr(["from building_causal_DAG.md"])
+        DAG_hdr ~~~ ingest
         ingest --> extract_vars["extract_variables"]
         extract_vars --> extract_causal["extract_causal_relations"]
         extract_causal --> assemble["assemble_dag"]
@@ -778,7 +780,9 @@ graph TD
         dag_route -- "pass" --> dag_done["dag_finalized"]
     end
 
-    subgraph SCM_Phase["Stage 2: SCM (new)"]
+    subgraph SCM_Phase["Stage 2: SCM"]
+        SCM_hdr(["new in this document"])
+        SCM_hdr ~~~ specify_eqs
         dag_done --> specify_eqs["specify_equations"]
         specify_eqs --> estimate_params["estimate_parameters"]
         estimate_params --> model_exogenous["model_exogenous_dist"]
@@ -797,6 +801,8 @@ graph TD
 
     report --> END(("__end__"))
 
+    style DAG_hdr fill:#e3f2fd,stroke:#0984e3,color:#555
+    style SCM_hdr fill:#fce4ec,stroke:#e94560,color:#555
     style START fill:#6c5ce7,color:#fff
     style END fill:#6c5ce7,color:#fff
     style dag_route fill:#fdcb6e,stroke:#f39c12,color:#2d3436

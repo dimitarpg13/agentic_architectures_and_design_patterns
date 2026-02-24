@@ -577,19 +577,25 @@ The DAG pipeline in `building_causal_DAG.md` uses RAG in one primary mode: **edg
 
 ```mermaid
 flowchart TD
-    subgraph DAG_RAG["RAG in DAG Pipeline<br/>(building_causal_DAG.md)"]
+    subgraph DAG_RAG["RAG in DAG Pipeline"]
+        DR0(["building_causal_DAG.md"])
         DR1["<b>Mode 1: Edge Evidence</b><br/>Retrieve passages supporting<br/>'Does X cause Y?'"]
+        DR0 ~~~ DR1
     end
 
-    subgraph SCM_RAG["RAG in SCM Pipeline<br/>(this document)"]
-        SR1["<b>Mode 1: Edge Evidence</b><br/><i>(inherited from DAG)</i>"]
+    subgraph SCM_RAG["RAG in SCM Pipeline"]
+        SR0(["this document"])
+        SR1["<b>Mode 1: Edge Evidence</b><br/><i>#40;inherited from DAG#41;</i>"]
         SR2["<b>Mode 2: Mechanism Retrieval</b><br/>Retrieve known functional forms<br/>'What is the dose-response<br/>curve for X → Y?'"]
         SR3["<b>Mode 3: Parameter Priors</b><br/>Retrieve published parameter<br/>estimates as initialization<br/>'Typical β for X → Y is 0.3–0.7'"]
         SR4["<b>Mode 4: Counterfactual Grounding</b><br/>Retrieve domain knowledge<br/>to validate counterfactual<br/>plausibility"]
+        SR0 ~~~ SR1
     end
 
     DAG_RAG --> SCM_RAG
 
+    style DR0 fill:#e3f2fd,stroke:#0984e3,color:#555
+    style SR0 fill:#fce4ec,stroke:#e94560,color:#555
     style DAG_RAG fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style SCM_RAG fill:#fce4ec,stroke:#e94560,color:#2d3436
 ```

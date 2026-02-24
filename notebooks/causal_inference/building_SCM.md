@@ -337,34 +337,37 @@ flowchart TB
         MEMORY[("Persistent State<br/>(SCMState)")]
     end
 
-    subgraph STAGE1["Stage 1 · DAG Construction<br/>(from building_causal_DAG.md)"]
+    subgraph STAGE1["Stage 1 · DAG Construction"]
         direction TB
+        A0(["from building_causal_DAG.md"])
         A1["🔍 Ingester"]
         A2["📋 Variable Extractor"]
         A3["⚡ Causal Extractor"]
         A4["🏗️ DAG Assembler"]
         A5["✅ DAG Validator"]
-        A1 --> A2 --> A3 --> A4 --> A5
+        A0 ~~~ A1 --> A2 --> A3 --> A4 --> A5
         A5 -.->|"refine loop"| A3
     end
 
-    subgraph STAGE2["Stage 2 · SCM Construction<br/>(new in this document)"]
+    subgraph STAGE2["Stage 2 · SCM Construction"]
         direction TB
+        B0(["new in this document"])
         B1["📐 Equation Specification<br/>Agent"]
         B2["📊 Parameter Estimation<br/>Agent"]
         B3["🎲 Exogenous Distribution<br/>Agent"]
         B4["🔄 Abduction Mechanism<br/>Agent"]
-        B1 --> B2 --> B3 --> B4
+        B0 ~~~ B1 --> B2 --> B3 --> B4
         B4 -.->|"refine loop"| B1
     end
 
     subgraph STAGE3["Stage 3 · Validation & Inference"]
         direction TB
+        C0([" "])
         C1["🧪 Model Fit Validator"]
         C2["💉 Intervention Simulator"]
         C3["🔮 Counterfactual Reasoner"]
         C4["📝 Report Generator"]
-        C1 --> C2 --> C3 --> C4
+        C0 ~~~ C1 --> C2 --> C3 --> C4
     end
 
     subgraph KNOWLEDGE["Knowledge Retrieval Layer"]
@@ -393,6 +396,9 @@ flowchart TB
 
     STAGE3 --> USER
 
+    style A0 fill:#e3f2fd,stroke:#0984e3,color:#555
+    style B0 fill:#fce4ec,stroke:#e94560,color:#555
+    style C0 fill:none,stroke:none,color:none
     style ORCHESTRATION fill:#dfe6e9,stroke:#636e72,color:#2d3436
     style STAGE1 fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style STAGE2 fill:#fce4ec,stroke:#e94560,color:#2d3436

@@ -39,9 +39,8 @@ The Causal DAG — as constructed by the pipeline in `building_causal_DAG.md` �
 
 ```mermaid
 flowchart LR
-    subgraph DAG_Only["Causal DAG Only<br/>(from building_causal_DAG.md)"]
+    subgraph DAG_Only["Causal DAG Only<br/>(from building_causal_DAG.md)<br/>&nbsp;"]
         direction TB
-        DAG_pad[ ] ~~~ D1
         D1["Nodes: {X, Y, Z}"]
         D2["Edges: X → Y, Z → Y"]
         D3["Confidence scores"]
@@ -49,9 +48,8 @@ flowchart LR
         D1 ~~~ D2 ~~~ D3 ~~~ D4
     end
 
-    subgraph Full_SCM["Full SCM<br/>(this document)"]
+    subgraph Full_SCM["Full SCM<br/>(this document)<br/>&nbsp;"]
         direction TB
-        SCM_pad[ ] ~~~ S1
         S1["Nodes: {X, Y, Z}"]
         S2["Edges: X → Y, Z → Y"]
         S3["Equations:<br/>Y = 0.7X + 0.3Z + ε"]
@@ -62,8 +60,6 @@ flowchart LR
 
     DAG_Only -->|"SCM extends DAG<br/>with quantitative layer"| Full_SCM
 
-    style DAG_pad fill:none,stroke:none,color:none
-    style SCM_pad fill:none,stroke:none,color:none
     style DAG_Only fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style Full_SCM fill:#fce4ec,stroke:#e94560,color:#2d3436
 ```
@@ -80,26 +76,20 @@ Pearl's causal ladder defines three levels of causal reasoning with increasing d
 
 ```mermaid
 graph TD
-    subgraph Rung1["Rung 1 — Association · P(Y | X)"]
-        R1_pad[ ] ~~~ R1
+    subgraph Rung1["Rung 1 — Association · P(Y | X)<br/>&nbsp;"]
         R1["Requires: observational data<br/>Sufficient object: joint distribution"]
     end
 
-    subgraph Rung2["Rung 2 — Intervention · P(Y | do(X))"]
-        R2_pad[ ] ~~~ R2
+    subgraph Rung2["Rung 2 — Intervention · P(Y | do(X))<br/>&nbsp;"]
         R2["Requires: causal DAG + data<br/>Sufficient object: DAG + identifiability conditions"]
     end
 
-    subgraph Rung3["Rung 3 — Counterfactual · P(Yₓ | X=x', Y=y')"]
-        R3_pad[ ] ~~~ R3
+    subgraph Rung3["Rung 3 — Counterfactual · P(Yₓ | X=x', Y=y')<br/>&nbsp;"]
         R3["Requires: fully specified SCM<br/>Sufficient object: SCM ⟨U, V, F, P(U)⟩"]
     end
 
     Rung1 --> Rung2 --> Rung3
 
-    style R1_pad fill:none,stroke:none,color:none
-    style R2_pad fill:none,stroke:none,color:none
-    style R3_pad fill:none,stroke:none,color:none
     style Rung1 fill:#e3f2fd,stroke:#0984e3,color:#2d3436
     style Rung2 fill:#fce4ec,stroke:#e17055,color:#2d3436
     style Rung3 fill:#ede7f6,stroke:#6c5ce7,color:#2d3436

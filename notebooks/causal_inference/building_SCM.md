@@ -702,30 +702,38 @@ The `building_causal_DAG.md` document specifies three tiers of validation checks
 
 ```mermaid
 flowchart TD
-    subgraph Structural["Structural Checks<br/>(inherited from DAG pipeline)"]
+    subgraph Structural["Structural Checks"]
+        S0(["inherited from DAG pipeline"])
         S1["Acyclicity ✓"]
         S2["Connectivity ✓"]
         S3["Degree bounds ✓"]
+        S0 ~~~ S1
     end
 
-    subgraph Semantic["Semantic Checks<br/>(inherited + extended)"]
+    subgraph Semantic["Semantic Checks"]
+        SE0(["inherited + extended"])
         SE1["Transitivity consistency ✓"]
         SE2["Domain coherence ✓"]
         SE3["Evidence coverage ✓"]
         SE4["<b>NEW:</b> Equation plausibility<br/><i>Do functional forms<br/>match domain expectations?</i>"]
+        SE0 ~~~ SE1
     end
 
-    subgraph Statistical["Statistical Checks<br/>(greatly expanded)"]
+    subgraph Statistical["Statistical Checks"]
+        ST0(["greatly expanded"])
         ST1["Conditional independence ✓"]
         ST2["<b>NEW:</b> Observational fit<br/><i>R², AIC/BIC for<br/>each equation</i>"]
         ST3["<b>NEW:</b> Residual diagnostics<br/><i>Independence, normality,<br/>homoscedasticity</i>"]
-        ST4["<b>NEW:</b> Intervention prediction<br/><i>If experimental data exists,<br/>compare do(X) predictions</i>"]
+        ST4["<b>NEW:</b> Intervention prediction<br/><i>If experimental data exists,<br/>compare do#40;X#41; predictions</i>"]
+        ST0 ~~~ ST1
     end
 
-    subgraph Counterfactual["Counterfactual Checks<br/>(entirely new tier)"]
+    subgraph Counterfactual["Counterfactual Checks"]
+        CF0(["entirely new tier"])
         CF1["Abduction reconstruction<br/><i>Can we recover observed<br/>data from inferred U?</i>"]
         CF2["Sensitivity analysis<br/><i>How stable are counterfactuals<br/>to SCM specification?</i>"]
         CF3["Expert plausibility review<br/><i>Do counterfactual results<br/>pass domain sanity checks?</i>"]
+        CF0 ~~~ CF1
     end
 
     Structural --> PASS{"All tiers<br/>acceptable?"}
@@ -735,6 +743,10 @@ flowchart TD
     PASS -- Yes --> DONE["✅ SCM Accepted"]
     PASS -- No --> LOOP["🔄 Refine equations,<br/>distributions, or DAG"]
 
+    style S0 fill:#dfe6e9,stroke:#636e72,color:#555
+    style SE0 fill:#dfe6e9,stroke:#636e72,color:#555
+    style ST0 fill:#dfe6e9,stroke:#636e72,color:#555
+    style CF0 fill:#ede7f6,stroke:#6c5ce7,color:#555
     style Counterfactual fill:#ede7f6,stroke:#6c5ce7,color:#2d3436
     style SE4 fill:#fab1a0,stroke:#e17055,color:#2d3436
     style ST2 fill:#fab1a0,stroke:#e17055,color:#2d3436

@@ -171,6 +171,10 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
   github repo: https://github.com/Gen-Verse/LatentMAS
 
+#### Autonomous Agents
+
+[Agents of Chaos, Natalie Shapira et al, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/autonomous_agents/Agents_of_Chaos_Shapira_2026.pdf)
+
 ## books
 
 [Agents in the Long Game of AI: Computational Cognitive Modeling for Trustworthy Hybrid AI, M. McShane et al, 2024](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/books/Agents_in_the_Long_Game_of_AI_McShane_2024.pdf)

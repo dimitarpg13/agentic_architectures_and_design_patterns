@@ -107,9 +107,11 @@ related repo: https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI
 
 Phase Loop Dynamics - A Runtime Phase Model for Stable LLM Agent Execution: https://github.com/kiyoshisasano/agent-pld-metrics
 
-### Multi-Agent Reinforcement Learning
+### Reinforcement Learning in Agentic Systems
 
 [Multi-Agent Reinforcement Learning: Foundations and Modern Approaches, Stefano V. Albrecht et al, 2024](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reinforcement_learning/Multi_Agent_Reinforcement_Learning_Albrecht_2024.pdf)
+
+[KARL: Knowledge Agents via Reinforcement Learning, Databricks Research, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reinforcement_learning/KARL_Knowledge_Agents_via_Reinforcement_Learning_Databricks_Research_2026.pdf)
 
 ### Agent2Agent protocol
 

@@ -49,3 +49,4 @@ articles/bdi_model/Intro_to_Belief_Functions_BFTA2019_Thierry_Denceux_Lecture1.p
 articles/bdi_model/Methods_for_Building_Belief_Functions_BFTA2019_Thierry_Denceux_Lecture2.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reinforcement_learning/Multi_Agent_Reinforcement_Learning_Albrecht_2024.pdf filter=lfs diff=lfs merge=lfs -text
 articles/autonomous_agents/Agents_of_Chaos_Shapira_2026.pdf filter=lfs diff=lfs merge=lfs -text
+articles/reinforcement_learning/KARL_Knowledge_Agents_via_Reinforcement_Learning_Databricks_Research_2026.pdf filter=lfs diff=lfs merge=lfs -text

@@ -149,6 +149,8 @@ https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns
 
   github repo: https://github.com/weitianxin/Awesome-Agentic-Reasoning
 
+[Strategic Navigation or Stochastic Search? How Agents and Humans Reason Over Document Collections, Łukasz Borchmann et al, Snowflake, 2026](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/blob/main/articles/reasoning_agents/Strategic_Navigation_or_Stochastic_Search_How_Agents_and_Humans_Reason_Over_Document_Collections_Borchmann_2026.pdf)
+
 #### Self-Evolving Agents
 
 [A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence, H. Gao et al, 2025](https://github.com/dimitarpg13/agentic_architectures_and_design_patterns/tree/main/agentic_designs/articles/self_evolving_agents)

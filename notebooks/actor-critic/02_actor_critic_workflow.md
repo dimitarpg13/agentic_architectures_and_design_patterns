@@ -128,8 +128,7 @@ sequenceDiagram
                 Orchestrator->>Orchestrator: strip _internal messages
             end
 
-            break validation passed or max attempts reached
-            end
+            Note over Orchestrator: Exit loop when validation<br/>passed or max attempts reached
         end
     end
 

@@ -339,7 +339,7 @@ The Orchestrator never imports UI code. Instead, the frontend wires **callbacks*
 | `on_cost_update` | `(delta: float, total: float) → None` | Update running cost display |
 | `on_status` | `(status: str, detail: str) → None` | Show pipeline phase ("Validating with Critic…") |
 
-Example wiring in a Streamlit frontend:
+Example wiring in a web frontend (e.g., Gradio, Streamlit, or a custom React app):
 
 ```python
 def setup_pipeline(session_state):

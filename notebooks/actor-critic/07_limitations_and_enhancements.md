@@ -539,7 +539,7 @@ The executor translates this intent into code deterministically — no LLM-gener
 ```python
 {
     "intent": "raw_code",
-    "code": "def merge_forecasts(actual, predicted):\n    ...",
+    "code": "def merge_datasets(left, right, join_keys):\n    ...",
     "validation": {
         "ast_parse": True,
         "no_restricted_calls": True,

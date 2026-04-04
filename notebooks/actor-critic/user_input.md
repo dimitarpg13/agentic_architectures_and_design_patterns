@@ -86,7 +86,7 @@ def construct_system_message(custom_instructions, data_dictionary,
 
     system_message = f"""# Instructions
 {base_system_message}
-
+                   
 ## **Business Context**
 {custom_instructions}
 

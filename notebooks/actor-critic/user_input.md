@@ -264,3 +264,44 @@ def validate_sql(self, sql: str) -> Dict[str, Any]:
 
     return {"valid": True}
 ```
+
+## Step 6: Result Size Management
+
+After execution, the result passes through two size gates before returning to the LLM:
+
+```python
+# utils/sql_executor.py — execute_sql_query()
+
+if result['truncated']:
+    return "The result of the query was truncated. Please modify your query to return a smaller result."
+
+json_result = json.dumps(result['result'])
+if len(_TOKEN_ENCODER.encode(json_result)) > MAX_TOOL_OUTPUT_TOKENS:
+    return "The result of the query execution is too large to return. Please modify your query to return a smaller result."
+
+return json_result
+```
+
+| Gate	| Threshold	 | Behavior |
+|--|--|--|
+| Row truncation |	DEFAULT_MAX_ROWS = 10000  |	If SQL Warehouse returns more rows than the limit, result is flagged as truncated and the LLM is asked to narrow the query |
+| Token limit |	MAX_TOOL_OUTPUT_TOKENS = 5000 |	If the JSON-serialized result exceeds 5,000 tokens, the LLM is asked to reduce the output size |
+
+When either gate triggers, the LLM receives a plain-text error message instead of data. It can then adjust its SQL (add filters, reduce columns, use aggregations) and retry.
+
+## Summary
+
+The translation from user intent to SQL execution is entirely LLM-mediated:
+
+| Stage	 | What Happens |	Who Does It |
+|--|--|--|
+| Input |	User types natural language question | User |
+| Context injection	| Data dictionary, business rules, table metadata assembled into system prompt | PromptBuilder |
+| SQL generation |	LLM reads context + question, generates SQL via tool call |	Primary Agent LLM |
+| Validation |	Keyword blacklist, SELECT enforcement, multi-statement rejection |	`SQLExecutor.validate_sql()` |
+| Execution	 | SQL runs on Databricks SQL Warehouse |	`SQLExecutor.execute_sql()` |
+| Size gating |	Row count and token count checks |	`execute_sql_query()` wrapper |
+| Synthesis	| LLM reads JSON result, writes natural language answer | Primary Agent LLM |
+| QA validation |	Critic validates accuracy of the final response	| QA Bot LLM |
+
+There is no intermediate representation, no query parser, no SQL template engine. The data dictionary and custom instructions serve as the "schema" that grounds the LLM's generation — if a column isn't documented there, the LLM has no way to know it exists.

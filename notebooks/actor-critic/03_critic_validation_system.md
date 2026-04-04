@@ -2,7 +2,7 @@
 
 This document provides a detailed analysis of the Critic validation subsystem — the automated quality gate that evaluates every Actor response before it reaches the user. We use **code generation** as the running example throughout: an Actor that generates code from natural language requests, and a Critic that validates correctness, security, and style.
 
-> **Note on terminology:** The Actor-Critic pattern is a general architecture. Specific implementations may use different names — for example, [AIR Insights](../03_qa_validation_system.md) calls them "Primary Agent" and "QA Bot." The principles described here are implementation-agnostic.
+> **Note on terminology:** The Actor-Critic pattern is a general architecture. Specific implementations may use different names — for example, "Primary Agent" and "Validator" or "Generator" and "Checker." The principles described here are implementation-agnostic.
 
 ---
 

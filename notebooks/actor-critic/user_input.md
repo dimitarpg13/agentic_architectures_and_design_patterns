@@ -299,9 +299,9 @@ The translation from user intent to SQL execution is entirely LLM-mediated:
 | Context injection	| Data dictionary, business rules, table metadata assembled into system prompt | PromptBuilder |
 | SQL generation |	LLM reads context + question, generates SQL via tool call |	Primary Agent LLM |
 | Validation |	Keyword blacklist, SELECT enforcement, multi-statement rejection |	`SQLExecutor.validate_sql()` |
-| Execution	 | SQL runs on Databricks SQL Warehouse |	`SQLExecutor.execute_sql()` |
+| Execution	 | SQL runs on SQL warehouse |	`SQLExecutor.execute_sql()` |
 | Size gating |	Row count and token count checks |	`execute_sql_query()` wrapper |
 | Synthesis	| LLM reads JSON result, writes natural language answer | Primary Agent LLM |
-| QA validation |	Critic validates accuracy of the final response	| QA Bot LLM |
+| Critic validation |	Critic validates accuracy of the final response	| Critic LLM |
 
 There is no intermediate representation, no query parser, no SQL template engine. The data dictionary and custom instructions serve as the "schema" that grounds the LLM's generation — if a column isn't documented there, the LLM has no way to know it exists.

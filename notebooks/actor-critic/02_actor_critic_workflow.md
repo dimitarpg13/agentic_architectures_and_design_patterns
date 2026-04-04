@@ -51,7 +51,7 @@ flowchart TB
 | Cost efficiency | The Critic can run on a smaller, cheaper model since validation is narrower than generation |
 | Latency control | Critic evaluation runs only once per attempt and can use a faster model tier |
 
-> **Example from practice**: An analytics platform (e.g., AIR Insights) pairs a high-capability Actor model with a cost-efficient Critic from a different family, achieving both quality and budget goals.
+> **Example from practice**: A production analytics platform may pair a high-capability Actor model with a cost-efficient Critic from a different family, achieving both quality and budget goals.
 
 ---
 

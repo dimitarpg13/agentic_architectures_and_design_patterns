@@ -598,7 +598,7 @@ flowchart TB
 | **Domain knowledge** | Project-specific APIs, common imports, error patterns | Project/repo context |
 | **Feedback signals** | Pass/fail rate per task type, common Critic corrections | Aggregate analysis for prompt tuning |
 
-**Implementation approach**: embed successful code patterns and user queries using a lightweight embedding model; store in a vector database. At query time, retrieve the top-k most relevant patterns and inject them into the Actor's context as few-shot examples. An analytics platform like AIR Insights could leverage its existing persistence layer (PostgreSQL + Delta tables) to store and retrieve these patterns without introducing new infrastructure.
+**Implementation approach**: embed successful code patterns and user queries using a lightweight embedding model; store in a vector database. At query time, retrieve the top-k most relevant patterns and inject them into the Actor's context as few-shot examples. A production analytics platform could leverage its existing persistence layer (e.g., PostgreSQL + columnar storage) to store and retrieve these patterns without introducing new infrastructure.
 
 ---
 

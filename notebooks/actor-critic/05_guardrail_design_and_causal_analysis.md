@@ -644,7 +644,7 @@ flowchart TB
 
 **Key insight:** Guardrails are not independent safety checks — they form a **causal system** whose interactions determine whether the Actor-Critic loop converges. Treating each guardrail in isolation misses the emergent incompatibilities that arise from their joint effect on the feedback loop. The SCM formalism provides a principled method for discovering, diagnosing, and resolving these interactions before they manifest as production deadlocks.
 
-> **Real-world note:** The AIR Insights platform — which implements this Actor-Critic pattern for natural language analytics — encountered exactly the deadlock described in Section 4 when users requested exhaustive item listings that exceeded output guardrails. Applying the deconfounding methodology (constraint metadata passed to the Critic) resolved the oscillation and enabled the system to gracefully degrade under physical constraints instead of entering correction loops that inevitably crashed.
+> **Real-world note:** A production platform implementing this Actor-Critic pattern for natural language analytics encountered exactly the deadlock described in Section 4 when users requested exhaustive item listings that exceeded output guardrails. Applying the deconfounding methodology (constraint metadata passed to the Critic) resolved the oscillation and enabled the system to gracefully degrade under physical constraints instead of entering correction loops that inevitably crashed.
 
 ---
 

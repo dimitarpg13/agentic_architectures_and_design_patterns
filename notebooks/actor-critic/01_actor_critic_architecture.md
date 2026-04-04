@@ -571,7 +571,7 @@ def get_auth_manager(env: str) -> AuthManager:
     return AuthManager.get_instance()  # singleton with OAuth auto-refresh
 ```
 
-> **Real-world note:** The AIR Insights platform, which implements this pattern for natural language analytics against Databricks, uses environment detection (`local macbook`, `databricks test`, `databricks`) to toggle debug sidebars, logging verbosity, and catalog selection — demonstrating how the same generic pattern adapts to a specific deployment topology.
+> **Real-world note:** A platform, which implements this pattern for natural language analytics against Databricks, uses environment detection (`local macbook`, `databricks test`, `databricks`) to toggle debug sidebars, logging verbosity, and catalog selection — demonstrating how the same generic pattern adapts to a specific deployment topology.
 
 ---
 

@@ -225,11 +225,11 @@ The LLM receives the user's question, the full system prompt (with data dictiona
 
 * The LLM wrote the SQL entirely — no template, no parsing of the user's English.
 
-* It knew to use oh_qty * unit_cost because the DATA_DICTIONARY.md defines those columns.
+* It knew to use `oh_qty * unit_cost` because the `DATA_DICTIONARY.md` defines those columns.
 
-* It added WHERE status = 'Active' because CUSTOM_INSTRUCTIONS.md specifies default filters.
+* It added `WHERE status = 'Active'` because `CUSTOM_INSTRUCTIONS.md` specifies default filters.
 
-* It used LIMIT 10 because the tool spec says "5-20 rows."
+* It used `LIMIT 10` because the tool spec says "5-20 rows."
 
 ## Step 5: SQL Validation and Execution
 

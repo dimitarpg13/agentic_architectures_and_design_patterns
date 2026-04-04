@@ -1,4 +1,6 @@
-# Thoughts on User Input
+# User Input for Actor-Critic Agentic Workflow
+
+Diagram showing how User Input integrates with the rest of the agentic workflow implementing the Actor-Critic paradygm
 
 ```mermaid
 flowchart TD

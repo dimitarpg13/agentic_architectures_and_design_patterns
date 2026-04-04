@@ -108,6 +108,7 @@ The current date and time is {current_datetime_pst}.
 The system message contains five injected sections:
 
 | Section |	Source | Purpose |
+| -- | -- | -- |
 | Instructions |	prompts/primary_agent_system_prompt.md | Agent behavioral guidelines — how to reason, when to use tools, response formatting |
 | Business Context |	usecases/<slug>/CUSTOM_INSTRUCTIONS.md | Domain-specific rules: default filters, known edge cases, business definitions |
 | Data Dictionary |	usecases/<slug>/DATA_DICTIONARY.md | Table schemas, column names, data types, allowed values, data quality notes |

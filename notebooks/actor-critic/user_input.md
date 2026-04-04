@@ -109,10 +109,10 @@ The system message contains five injected sections:
 
 | Section |	Source | Purpose |
 | -- | -- | -- |
-| Instructions |	prompts/primary_agent_system_prompt.md | Agent behavioral guidelines — how to reason, when to use tools, response formatting |
-| Business Context |	usecases/<slug>/CUSTOM_INSTRUCTIONS.md | Domain-specific rules: default filters, known edge cases, business definitions |
-| Data Dictionary |	usecases/<slug>/DATA_DICTIONARY.md | Table schemas, column names, data types, allowed values, data quality notes |
-| Metadata |	PreProcessor.datasets |	Delta table fully-qualified names (catalog.schema.table) and descriptions |
+| Instructions |	`prompts/primary_agent_system_prompt.md` | Agent behavioral guidelines — how to reason, when to use tools, response formatting |
+| Business Context |	`usecases/<slug>/CUSTOM_INSTRUCTIONS.md` | Domain-specific rules: default filters, known edge cases, business definitions |
+| Data Dictionary |	`usecases/<slug>/DATA_DICTIONARY.md` | Table schemas, column names, data types, allowed values, data quality notes |
+| Metadata |	`PreProcessor.datasets` |	Delta table fully-qualified names (catalog.schema.table) and descriptions |
 | User Profile |	Saved user preferences |	Role, territory, product focus — used to tailor responses |
 
 The `DATA_DICTIONARY.md` is what enables the LLM to write correct SQL — it maps business concepts ("inventory value") to specific columns (`oh_qty`, `unit_cost`) and table names (catalog.schema.inventory_table).

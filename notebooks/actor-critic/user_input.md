@@ -1,15 +1,15 @@
 # User Input for Actor-Critic Agentic Workflow
 
-Diagram showing how User Input integrates with the rest of the agentic workflow implementing the Actor-Critic paradygm
+Diagram showing how User Input integrates with the rest of the agentic workflow implementing the Actor-Critic paradigm.
 
 ```mermaid
 flowchart TD
-    U["User types natural language question<br/>e.g. What are the top 10 style-colors<br/>by inventory value?"]
+    U["User types natural language question<br/>e.g. Show me the top 10 products<br/>by total revenue last quarter"]
 
     subgraph ContextAssembly["Context Assembly"]
         CI["CUSTOM_INSTRUCTIONS.md<br/>Business rules, default filters,<br/>query patterns, edge cases"]
         DD["DATA_DICTIONARY.md<br/>Table schemas, column definitions,<br/>data types, business semantics"]
-        META["Dataset Metadata<br/>Delta table names, descriptions"]
+        META["Dataset Metadata<br/>Table names, descriptions"]
         BP["Base System Prompt<br/>Agent behavioral guidelines"]
     end
 
@@ -26,7 +26,7 @@ flowchart TD
     DECIDE -->|No tool needed| DIRECT["LLM responds directly<br/>from context knowledge"]
 
     SQL_TC --> VALIDATE["SQL Guardrails<br/>validate_sql: keyword blacklist,<br/>SELECT/WITH enforcement,<br/>multi-statement rejection"]
-    VALIDATE -->|Valid| EXEC["Execute on Databricks<br/>SQL Warehouse"]
+    VALIDATE -->|Valid| EXEC["Execute on<br/>SQL Warehouse"]
     VALIDATE -->|Invalid| REJECT["Return error to LLM"]
 
     EXEC --> SIZE{"Result size check"}
@@ -53,15 +53,15 @@ flowchart TD
 ```
 
 ## Step 1: User Input — Unstructured Natural Language
-The user types a free-form English question into the Streamlit chat widget. There is no schema, no required format, no keywords to include. 
+The user types a free-form English question into a chat interface. There is no schema, no required format, no keywords to include. 
 
 **Examples**:
 
-* _"What are the top 10 style-colors by inventory value?"_
+* _"Show me the top 10 products by total revenue last quarter"_
 
-* _"Show me the month-over-month trend for digital demand in Q4"_
+* _"What is the month-over-month growth rate for our EMEA region?"_
 
-* _"Compare sell-through rates across territories for running shoes"_
+* _"Compare average order value across customer segments for the last 12 months"_
 
 The raw string is captured as user_input and appended to the conversation history in OpenAI message format:
 
@@ -112,10 +112,10 @@ The system message contains five injected sections:
 | Instructions |	`prompts/primary_agent_system_prompt.md` | Agent behavioral guidelines — how to reason, when to use tools, response formatting |
 | Business Context |	`usecases/<slug>/CUSTOM_INSTRUCTIONS.md` | Domain-specific rules: default filters, known edge cases, business definitions |
 | Data Dictionary |	`usecases/<slug>/DATA_DICTIONARY.md` | Table schemas, column names, data types, allowed values, data quality notes |
-| Metadata |	`PreProcessor.datasets` |	Delta table fully-qualified names (catalog.schema.table) and descriptions |
-| User Profile |	Saved user preferences |	Role, territory, product focus — used to tailor responses |
+| Metadata |	`PreProcessor.datasets` |	Fully-qualified table names (catalog.schema.table) and descriptions |
+| User Profile |	Saved user preferences |	Role, region, area of focus — used to tailor responses |
 
-The `DATA_DICTIONARY.md` is what enables the LLM to write correct SQL — it maps business concepts ("inventory value") to specific columns (`oh_qty`, `unit_cost`) and table names (catalog.schema.inventory_table).
+The `DATA_DICTIONARY.md` is what enables the LLM to write correct SQL — it maps business concepts (e.g., "total revenue") to specific columns (`quantity`, `unit_price`) and table names (`catalog.schema.orders`).
 
 ## Step 3: Tool Specifications — What the LLM Can Call
 
@@ -209,7 +209,7 @@ if additional_tools:
 
 ## Step 4: LLM Generates the SQL
 
-The LLM receives the user's question, the full system prompt (with data dictionary and business rules), and the tool specifications. It then autonomously generates a tool_call containing the SQL it wants to execute. For example, given the question "What are the top 10 style-colors by inventory value?", the LLM might produce:
+The LLM receives the user's question, the full system prompt (with data dictionary and business rules), and the tool specifications. It then autonomously generates a tool_call containing the SQL it wants to execute. For example, given the question "Show me the top 10 products by total revenue last quarter", the LLM might produce:
 
 ```json
 {
@@ -217,7 +217,7 @@ The LLM receives the user's question, the full system prompt (with data dictiona
   "type": "function",
   "function": {
     "name": "run_sql_query",
-    "arguments": "{\"sql_query\": \"SELECT style_color, SUM(oh_qty * unit_cost) AS inventory_value FROM catalog.schema.inventory_table WHERE status = 'Active' GROUP BY style_color ORDER BY inventory_value DESC LIMIT 10\", \"reason\": \"Retrieving the top 10 style-colors ranked by total inventory value, using the on-hand quantity multiplied by unit cost as the value metric\"}"
+    "arguments": "{\"sql_query\": \"SELECT product_name, SUM(quantity * unit_price) AS total_revenue FROM catalog.schema.orders WHERE order_date >= '2025-10-01' AND order_date < '2026-01-01' GROUP BY product_name ORDER BY total_revenue DESC LIMIT 10\", \"reason\": \"Retrieving the top 10 products ranked by total revenue for last quarter, calculated as quantity times unit price\"}"
   }
 }
 ```
@@ -226,15 +226,15 @@ The LLM receives the user's question, the full system prompt (with data dictiona
 
 * The LLM wrote the SQL entirely — no template, no parsing of the user's English.
 
-* It knew to use `oh_qty * unit_cost` because the `DATA_DICTIONARY.md` defines those columns.
+* It knew to use `quantity * unit_price` because the `DATA_DICTIONARY.md` defines those columns and their semantics.
 
-* It added `WHERE status = 'Active'` because `CUSTOM_INSTRUCTIONS.md` specifies default filters.
+* It added a `WHERE` clause for the date range because `CUSTOM_INSTRUCTIONS.md` specifies how to interpret "last quarter."
 
 * It used `LIMIT 10` because the tool spec says "5-20 rows."
 
 ## Step 5: SQL Validation and Execution
 
-Before reaching the Databricks SQL Warehouse, the generated SQL passes through guardrails in `SQLExecutor.validate_sql()`:
+Before reaching the SQL warehouse, the generated SQL passes through guardrails in `SQLExecutor.validate_sql()`:
 
 ```python
 # utils/sql_executor.py

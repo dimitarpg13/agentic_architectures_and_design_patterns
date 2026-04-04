@@ -7,7 +7,7 @@ flowchart TD
     U["User types natural language question<br/>e.g. Show me the top 10 products<br/>by total revenue last quarter"]
 
     subgraph ContextAssembly["Context Assembly"]
-        CI["CUSTOM_INSTRUCTIONS.md<br/>Business rules, default filters,<br/>query patterns, edge cases"]
+        CI["DOMAIN_RULES.md<br/>Business rules, default filters,<br/>query patterns, edge cases"]
         DD["DATA_DICTIONARY.md<br/>Table schemas, column definitions,<br/>data types, business semantics"]
         META["Dataset Metadata<br/>Table names, descriptions"]
         BP["Base System Prompt<br/>Agent behavioral guidelines"]
@@ -110,7 +110,7 @@ The system message contains five injected sections:
 | Section |	Source | Purpose |
 | -- | -- | -- |
 | Instructions |	`prompts/primary_agent_system_prompt.md` | Agent behavioral guidelines — how to reason, when to use tools, response formatting |
-| Business Context |	`usecases/<slug>/CUSTOM_INSTRUCTIONS.md` | Domain-specific rules: default filters, known edge cases, business definitions |
+| Business Context |	`usecases/<slug>/DOMAIN_RULES.md` | Domain-specific rules: default filters, known edge cases, business definitions |
 | Data Dictionary |	`usecases/<slug>/DATA_DICTIONARY.md` | Table schemas, column names, data types, allowed values, data quality notes |
 | Metadata |	`PreProcessor.datasets` |	Fully-qualified table names (catalog.schema.table) and descriptions |
 | User Profile |	Saved user preferences |	Role, region, area of focus — used to tailor responses |
@@ -228,7 +228,7 @@ The LLM receives the user's question, the full system prompt (with data dictiona
 
 * It knew to use `quantity * unit_price` because the `DATA_DICTIONARY.md` defines those columns and their semantics.
 
-* It added a `WHERE` clause for the date range because `CUSTOM_INSTRUCTIONS.md` specifies how to interpret "last quarter."
+* It added a `WHERE` clause for the date range because `DOMAIN_RULES.md` specifies how to interpret "last quarter."
 
 * It used `LIMIT 10` because the tool spec says "5-20 rows."
 

@@ -69,7 +69,7 @@ All diagrams use [Mermaid](https://mermaid.js.org/) syntax and render natively i
 
 ---
 
-## Prompt to Generate Specific Workflow
+## Prompt to Generate Specific Agentic Workflow Implementing Actor-Critic Paradigm
 
 **SQL Generation**
 

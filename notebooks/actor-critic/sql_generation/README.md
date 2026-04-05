@@ -92,7 +92,49 @@ sql_generation/
         ├── actor.py                   ← SQL generation (Claude)
         ├── critic.py                  ← SQL validation (Gemini)
         └── router.py                  ← Routing, correction, finalization
+
+tests/
+├── __init__.py
+├── conftest.py                        ← Shared fixtures and mock LLMs
+├── test_prompt_builder.py             ← PromptBuilder unit tests
+├── test_actor.py                      ← ActorNode unit tests
+├── test_critic.py                     ← CriticNode unit tests
+├── test_router.py                     ← Routing / correction / finalization tests
+├── test_config.py                     ← WorkflowConfig factory tests
+└── test_graph_integration.py          ← End-to-end graph tests (mocked LLMs)
 ```
+
+---
+
+## Running Tests
+
+All tests use **mocked LLMs** — no GCP credentials, API keys, or network access required. They run identically on a local machine and on Vertex AI Workbench.
+
+### Quick run
+
+```bash
+cd actor-critic/sql_generation
+pip install -r requirements.txt
+pytest -v
+```
+
+### Run a specific test module
+
+```bash
+pytest tests/test_router.py -v
+pytest tests/test_graph_integration.py -v
+```
+
+### What the tests cover
+
+| Module | Tests | What is verified |
+|--------|-------|-----------------|
+| `test_prompt_builder` | 10 | File reading, section assembly, metadata injection, missing-file fallback |
+| `test_actor` | 13 | SQL extraction (fenced / unfenced), explanation parsing, prompt construction with/without feedback, state updates |
+| `test_critic` | 11 | JSON parsing (clean / fenced / embedded / broken), verdict extraction, prompt structure |
+| `test_router` | 12 | All routing branches (pass, salvageable, non_salvageable, max_attempts), correction state update, finalize status |
+| `test_config` | 6 | Factory methods (`from_values`, `from_env`), LangSmith env propagation, base_dir handling |
+| `test_graph_integration` | 7 | Full pipeline: pass-on-first-try, salvageable→pass, non_salvageable→regenerate→pass, max-attempts exhaustion, salvageable loop exhaustion |
 
 ---
 

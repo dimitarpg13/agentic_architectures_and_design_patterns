@@ -25,6 +25,18 @@ A **code generation** use case serves as the running example throughout: an Acto
 | 7 | [Limitations & Enhancements](07_limitations_and_enhancements.md) | 10 identified limitations (pass rate, instruction-following, latency, sandbox isolation, provider coupling), 10 enhancement proposals with Mermaid diagrams (graduated validation, instruction distillation, async streaming, multi-agent routing, process sandbox, cross-session memory, model-agnostic backend, observability dashboard), prioritized Gantt roadmap |
 | 8 | [Causal Nash Equilibrium Convergence](08_causal_nash_equilibrium_convergence.md) | Formal game-theoretic foundations: Nash Equilibrium in MARL (Nash-Q, satisficing paths, ATMGs), confounding problem with structural causal model, four causal mechanisms for convergence (interventional best responses, game decomposition via d-separation, counterfactual credit assignment, Causal SHAP verification), complete walkthrough comparing standard MARL oscillation vs causal convergence, implementation architecture with pseudocode |
 
+### User Input & System Prompt Construction
+
+| Document | Description |
+|---|---|
+| [User Input](user_input.md) | How user input integrates with the Actor-Critic workflow — from unstructured natural language through context assembly (`PromptBuilder`), tool specifications, SQL generation, validation guardrails, and result size management. Defines the `prompts/` and `usecases/<slug>/` directory conventions for `DOMAIN_RULES.md` and `DATA_DICTIONARY.md` |
+
+### Implementation Demos
+
+| Demo | Stack | Description |
+|---|---|---|
+| [SQL Generation](sql_generation/) | LangGraph · Claude · Gemini · Vertex AI · LangSmith | Working dual-agent workflow for validated SQL query generation against the TPC-H benchmark dataset. Actor (Claude on Vertex AI Model Garden) generates SQL from natural language; Critic (Gemini on Vertex AI) validates against schema, logic, domain rules, and best practices. Includes a runnable demo notebook, 77 unit/integration tests, and three secret-management strategies (.env, hardcoded, Secret Manager). See [`sql_generation/README.md`](sql_generation/README.md) for GCP deployment and tracing instructions |
+
 ---
 
 ## Design Principles
@@ -48,11 +60,13 @@ The Actor-Critic pattern is built on five core principles:
 For a complete understanding, read the documents in order (1 → 8). For specific topics:
 
 - **"How does the Actor-Critic loop work?"** — Start with [02](02_actor_critic_workflow.md), then [03](03_critic_validation_system.md)
+- **"How does user input get translated to SQL?"** — [user_input.md](user_input.md), then the [sql_generation/](sql_generation/) demo
 - **"How are tools designed?"** — [04](04_tool_calling_system.md)
 - **"Why do correction loops sometimes fail?"** — [05](05_guardrail_design_and_causal_analysis.md)
 - **"Is this truly adversarial?"** — [06](06_adversarial_dynamics_and_convergence.md)
 - **"What should I improve first?"** — [07](07_limitations_and_enhancements.md)
 - **"Why does causal inference enable Nash Equilibrium convergence?"** — [08](08_causal_nash_equilibrium_convergence.md)
+- **"Show me a working implementation"** — [sql_generation/](sql_generation/) with its [README](sql_generation/README.md) and [demo notebook](sql_generation/demo_sql_generation.ipynb)
 
 ---
 

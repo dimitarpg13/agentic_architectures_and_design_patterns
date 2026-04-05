@@ -78,11 +78,14 @@ sql_generation/
 │       ├── DOMAIN_RULES.md            ← TPC-H business rules
 │       └── DATA_DICTIONARY.md         ← TPC-H table schemas
 │
+├── utils/
+│   ├── __init__.py
+│   └── prompt_builder.py             ← System prompt assembly (PromptBuilder)
+│
 └── workflow/
     ├── __init__.py
     ├── config.py                      ← Configuration & secret management
     ├── state.py                       ← LangGraph state schema
-    ├── prompt_builder.py              ← System prompt assembly
     ├── graph.py                       ← LangGraph graph definition
     └── nodes/
         ├── __init__.py

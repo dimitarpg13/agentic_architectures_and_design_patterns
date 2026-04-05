@@ -24,10 +24,10 @@ from langchain_google_vertexai import ChatVertexAI
 from langchain_google_vertexai.model_garden import ChatAnthropicVertex
 from langgraph.graph import END, StateGraph
 
+from utils.prompt_builder import PromptBuilder
 from workflow.nodes.actor import ActorNode
 from workflow.nodes.critic import CriticNode
 from workflow.nodes.router import apply_correction, finalize, route_verdict
-from workflow.prompt_builder import PromptBuilder
 from workflow.state import SQLWorkflowState
 
 if TYPE_CHECKING:
@@ -69,8 +69,8 @@ def build_sql_workflow(config: WorkflowConfig) -> CompiledStateGraph:
 
     # ── Prompt builder ──────────────────────────────────────────────
     prompt_builder = PromptBuilder(
-        use_case=config.use_case,
         base_dir=config.base_dir,
+        use_case=config.use_case,
     )
 
     # ── Node instances ──────────────────────────────────────────────
@@ -81,8 +81,8 @@ def build_sql_workflow(config: WorkflowConfig) -> CompiledStateGraph:
         """One-time context assembly — reads prompts and grounding docs."""
         logger.info("Assembling context for use-case '%s'", config.use_case)
         return {
-            "actor_system_message": prompt_builder.build_actor_system_message(),
-            "critic_system_message": prompt_builder.build_critic_system_message(),
+            "actor_system_message": prompt_builder.build_actor_system_prompt(),
+            "critic_system_message": prompt_builder.build_critic_system_prompt(),
             "use_case": config.use_case,
             "max_attempts": config.max_attempts,
             "attempt": 0,

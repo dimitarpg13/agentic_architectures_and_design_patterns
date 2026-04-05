@@ -1,0 +1,3 @@
+[submodule "causal_inference_in_agentic_workflows"]
+	path = causal_inference_in_agentic_workflows
+	url = https://github.com/dimitarpg13/causal_inference_in_agentic_workflows

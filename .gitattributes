@@ -51,3 +51,4 @@ articles/reinforcement_learning/Multi_Agent_Reinforcement_Learning_Albrecht_2024
 articles/autonomous_agents/Agents_of_Chaos_Shapira_2026.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reinforcement_learning/KARL_Knowledge_Agents_via_Reinforcement_Learning_Databricks_Research_2026.pdf filter=lfs diff=lfs merge=lfs -text
 articles/reasoning_agents/Strategic_Navigation_or_Stochastic_Search_How_Agents_and_Humans_Reason_Over_Document_Collections_Borchmann_2026.pdf filter=lfs diff=lfs merge=lfs -text
+articles/agentic_research_papers/PaperOrchestra-A_Multi-Agent_Framework_for_Automated_AI_Research_Paper_Writing_Song_2026.pdf filter=lfs diff=lfs merge=lfs -text

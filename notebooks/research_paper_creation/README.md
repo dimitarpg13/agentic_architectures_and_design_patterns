@@ -16,12 +16,12 @@ A multi-agent pipeline for automated AI research paper writing, inspired by [Pap
 
 ```mermaid
 flowchart TD
-    IN(["User Inputs<br/>Idea Summary + Experimental Log + Guidelines"])
-    OA["Outline Agent<br/>Structured JSON outline + search queries"]
-    LRA["Literature Review Agent<br/>Web search, citation registry, Intro + Related Work"]
-    SWA["Section Writer Agent<br/>Abstract, Methodology, Experiments, Conclusion"]
-    ASM["Assemble Manuscript<br/>Stitches all sections into Markdown"]
-    REV["Refinement Agent<br/>Simulates peer review, iteratively improves"]
+    IN(["User Inputs: Idea Summary, Experimental Log, Guidelines"])
+    OA["Outline Agent: structured JSON outline + search queries"]
+    LRA["Literature Review Agent: web search, citations, Intro + Related Work"]
+    SWA["Section Writer Agent: Abstract, Methodology, Experiments, Conclusion"]
+    ASM["Assemble Manuscript: stitch sections into Markdown"]
+    REV["Refinement Agent: peer review, iteratively improves"]
     ROUTE{"Verdict?"}
     FIN(["Final Manuscript"])
 
@@ -31,8 +31,8 @@ flowchart TD
     SWA --> ASM
     ASM --> REV
     REV --> ROUTE
-    ROUTE -->|"needs_refinement<br/>AND round < max"| REV
-    ROUTE -->|"satisfactory OR<br/>round >= max"| FIN
+    ROUTE -->|"needs_refinement, round < max"| REV
+    ROUTE -->|"satisfactory or round >= max"| FIN
 
     style IN fill:#e1f5fe,stroke:#0288d1
     style FIN fill:#e8f5e9,stroke:#388e3c
@@ -187,32 +187,13 @@ pytest -v
 
 ```mermaid
 flowchart LR
-    subgraph PO["PaperOrchestra (Song et al.)"]
-        direction TB
-        PO1["Step 1: Outline"]
-        PO2["Step 2: Plotting"]
-        PO3["Step 3: Literature"]
-        PO4["Step 4: Sections"]
-        PO5["Step 5: Refinement"]
-        PO1 --> PO2 & PO3
-        PO2 & PO3 --> PO4 --> PO5
-    end
+    PO1["Step 1: Outline"] -.-> I1["OutlineAgent"]
+    PO2["Step 2: Plotting - not implemented"]:::notimpl
+    PO3["Step 3: Literature"] -.-> I3["LiteratureReviewAgent + Tavily"]
+    PO4["Step 4: Sections"] -.-> I4["SectionWriterAgent"]
+    PO5["Step 5: Refinement"] -.-> I5["RefinementAgent, iterative loop"]
 
-    subgraph IMPL["This Implementation"]
-        direction TB
-        I1["OutlineAgent"]
-        I3["LiteratureReviewAgent<br/>+ Tavily web search"]
-        I4["SectionWriterAgent"]
-        I5["RefinementAgent<br/>iterative loop"]
-        I1 --> I3 --> I4 --> I5
-    end
-
-    PO1 -.->|maps to| I1
-    PO3 -.->|maps to| I3
-    PO4 -.->|maps to| I4
-    PO5 -.->|maps to| I5
-
-    style PO2 fill:#fff,stroke:#ccc,stroke-dasharray: 5 5,color:#999
+    classDef notimpl fill:#f5f5f5,stroke:#bdbdbd,color:#9e9e9e
 ```
 
 | PaperOrchestra Step | This Implementation | Status |

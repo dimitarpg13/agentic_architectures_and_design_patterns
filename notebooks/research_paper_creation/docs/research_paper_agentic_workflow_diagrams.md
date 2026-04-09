@@ -93,8 +93,8 @@ flowchart BT
     end
 
     subgraph workflow_pkg["workflow/"]
-        state["state.py<br/>PaperState"]
-        graph["graph.py<br/>build_paper_workflow"]
+        wf_state["state.py<br/>PaperState"]
+        wf_graph["graph.py<br/>build_paper_workflow"]
     end
 
     outline --> p1
@@ -103,15 +103,15 @@ flowchart BT
     section_writer --> p3
     refinement --> p4
 
-    graph --> settings
-    graph --> web_search
-    graph --> outline
-    graph --> lit_review
-    graph --> section_writer
-    graph --> refinement
-    graph --> state
+    wf_graph --> settings
+    wf_graph --> web_search
+    wf_graph --> outline
+    wf_graph --> lit_review
+    wf_graph --> section_writer
+    wf_graph --> refinement
+    wf_graph --> wf_state
 
-    style graph fill:#e3f2fd,stroke:#1565c0
+    style wf_graph fill:#e3f2fd,stroke:#1565c0
     style settings fill:#fce4ec,stroke:#c62828
 ```
 

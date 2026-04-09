@@ -58,3 +58,4 @@ articles/causal_inference/Neural_Causal_Models_for_Counterfactual_Identification
 articles/causal_inference/The_Causal-Neural_Connection-Expressiveness_Learnability_and_Inference_Xia_2022.pdf filter=lfs diff=lfs merge=lfs -text
 articles/causal_inference/Counterfactual_reasoning-an_analysis_of_in-context_emergence_Miller_NeurIPS_2025.pdf filter=lfs diff=lfs merge=lfs -text
 articles/causal_inference/Deep_Structural_Causal_Models_for_Tractable_Counterfactual_Inference_Pawlowski_2020.pdf filter=lfs diff=lfs merge=lfs -text
+articles/computer_use_agents/The_Art_of_Building_Verifiers_for_Computer_Use_Agents_Rosset_2026.pdf filter=lfs diff=lfs merge=lfs -text

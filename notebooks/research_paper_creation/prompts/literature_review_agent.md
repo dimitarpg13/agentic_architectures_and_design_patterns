@@ -54,5 +54,6 @@ You MUST respond with valid JSON:
 - Cite only papers that appeared in the search results. Do not hallucinate citations.
 - Use [Author, Year] citation format consistently.
 - The Introduction should be 3–5 paragraphs.
-- The Related Work should be organized into 2–4 thematic subsections.
+- The Related Work should be organized into 2–4 thematic subsections using `###` headers (not `#` or `##` — those levels are reserved for section headers added during assembly).
+- Do NOT include a top-level section header (e.g., `# Introduction` or `# Related Work`) in either field value. Section headers are added by the assembler.
 - Clearly articulate what makes the current paper different from prior work.

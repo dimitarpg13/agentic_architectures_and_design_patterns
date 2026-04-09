@@ -85,14 +85,14 @@ LIT_REVIEW_RESPONSE = json.dumps({
         },
     ],
     "introduction": "Transformers have become the backbone of modern NLP...",
-    "related_work": "## Sparse Attention\nSeveral methods have been proposed...",
+    "related_work": "### Sparse Attention\nSeveral methods have been proposed...",
 })
 
 SECTION_WRITER_RESPONSE = json.dumps({
     "abstract": "We propose AdaSparse, an adaptive sparse attention mechanism...",
-    "methodology": "# Methodology\n\nOur approach consists of three components...",
-    "experiments": "# Experiments\n\nWe evaluate AdaSparse on long-context benchmarks...",
-    "conclusion": "# Conclusion\n\nWe presented AdaSparse...",
+    "methodology": "Our approach consists of three components...",
+    "experiments": "We evaluate AdaSparse on long-context benchmarks...",
+    "conclusion": "We presented AdaSparse...",
 })
 
 REFINEMENT_PASS_RESPONSE = json.dumps({

@@ -43,16 +43,19 @@ You MUST respond with valid JSON:
 ```json
 {
     "abstract": "The abstract text...",
-    "methodology": "# Methodology\n\nFull methodology section with subsections...",
-    "experiments": "# Experiments\n\nFull experiments section...",
-    "conclusion": "# Conclusion\n\nFull conclusion section..."
+    "methodology": "The proposed method consists of three components...\n\n### Component A\n...",
+    "experiments": "We evaluate on the following benchmarks...\n\n### Main Results\n...",
+    "conclusion": "We have presented a novel approach..."
 }
 ```
+
+**Important:** Do NOT include a top-level section header (e.g., `# Methodology`) in any field value. Section headers are added by the assembler. Use `###` for any subsections within a field.
 
 ## Guidelines
 
 - Write in formal academic style, third person.
 - Reference specific numbers from the experimental log — don't invent metrics.
-- Use Markdown formatting for structure (headers, bold, tables, code blocks).
+- Use Markdown formatting for structure (bold, tables, code blocks).
+- Use `###` for subsections within each field (not `#` or `##` — those levels are reserved for section headers added during assembly).
 - Format tables using Markdown table syntax for experimental results.
 - Keep the total length appropriate for a conference paper (8–12 pages equivalent).

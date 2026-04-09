@@ -14,6 +14,7 @@ Graph topology (mirrors PaperOrchestra's 5-step pipeline):
 from __future__ import annotations
 
 import logging
+import re
 from typing import TYPE_CHECKING
 
 from langgraph.graph import END, StateGraph
@@ -30,6 +31,18 @@ if TYPE_CHECKING:
     from langgraph.graph.state import CompiledStateGraph
 
 logger = logging.getLogger(__name__)
+
+_LEADING_HEADER = re.compile(r"^\s*#{1,2}\s+[^\n]*\n*")
+
+
+def _strip_leading_header(text: str) -> str:
+    """Remove a leading Markdown H1/H2 header line if present.
+
+    Defence-in-depth: the prompts instruct agents not to include top-level
+    headers, but LLMs sometimes ignore that.  Stripping here prevents
+    duplicate / inconsistent headings in the assembled manuscript.
+    """
+    return _LEADING_HEADER.sub("", text, count=1).lstrip("\n") if text else ""
 
 
 def build_paper_workflow(config: PipelineConfig) -> CompiledStateGraph:
@@ -60,17 +73,17 @@ def build_paper_workflow(config: PipelineConfig) -> CompiledStateGraph:
         parts = [
             f"# {title}\n",
             "## Abstract\n",
-            state.get("abstract", ""),
+            _strip_leading_header(state.get("abstract", "")),
             "\n## 1. Introduction\n",
-            state.get("introduction", ""),
+            _strip_leading_header(state.get("introduction", "")),
             "\n## 2. Related Work\n",
-            state.get("related_work", ""),
+            _strip_leading_header(state.get("related_work", "")),
             "\n## 3. Methodology\n",
-            state.get("methodology", ""),
+            _strip_leading_header(state.get("methodology", "")),
             "\n## 4. Experiments\n",
-            state.get("experiments", ""),
+            _strip_leading_header(state.get("experiments", "")),
             "\n## 5. Conclusion\n",
-            state.get("conclusion", ""),
+            _strip_leading_header(state.get("conclusion", "")),
         ]
 
         citations = state.get("citations", [])

@@ -2,6 +2,8 @@
 
 from unittest.mock import patch
 
+import pytest
+
 from tests.conftest import (
     LIT_REVIEW_RESPONSE,
     OUTLINE_RESPONSE,
@@ -12,7 +14,7 @@ from tests.conftest import (
     make_base_state,
 )
 from config.settings import PipelineConfig
-from workflow.graph import build_paper_workflow
+from workflow.graph import _strip_leading_header, build_paper_workflow
 
 
 def _mock_config():
@@ -73,6 +75,20 @@ class TestRefinementLoop:
 
         assert result["status"] == "completed"
         assert result["refinement_round"] >= 1
+
+
+class TestStripLeadingHeader:
+
+    @pytest.mark.parametrize("raw,expected", [
+        ("# Methodology\n\nBody text", "Body text"),
+        ("## Experiments\n\nBody text", "Body text"),
+        ("### Subsection\n\nBody text", "### Subsection\n\nBody text"),
+        ("Body text without header", "Body text without header"),
+        ("", ""),
+        ("  # Indented Header\nBody", "Body"),
+    ])
+    def test_strips_h1_h2_preserves_h3(self, raw, expected):
+        assert _strip_leading_header(raw) == expected
 
 
 class TestMaxRefinementRounds:

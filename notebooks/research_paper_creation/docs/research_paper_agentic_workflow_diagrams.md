@@ -32,32 +32,29 @@ The pipeline follows a linear chain of four specialized agents, with a condition
 
 ```mermaid
 flowchart TD
-    IN(["User Inputs<br/>Idea Summary + Experimental Log + Guidelines"])
-
-    subgraph Pipeline["LangGraph StateGraph"]
-        direction TB
-        OA["Outline Agent<br/>Structures raw materials into JSON plan"]
-        LRA["Literature Review Agent<br/>Searches web, builds citations,<br/>drafts Intro + Related Work"]
-        SWA["Section Writer Agent<br/>Drafts Abstract, Methodology,<br/>Experiments, Conclusion"]
-        ASM["Assemble Manuscript<br/>Stitches all sections into Markdown"]
-        REV["Refinement Agent<br/>Reviews manuscript quality"]
-        ROUTE{"route_after_review"}
-        FIN["finalize"]
-
-        OA --> LRA --> SWA --> ASM --> REV --> ROUTE
-        ROUTE -->|"needs_refinement<br/>AND round < max"| REV
-        ROUTE -->|"satisfactory OR<br/>round >= max"| FIN
-    end
-
+    IN(["User Inputs: Idea Summary, Experimental Log, Guidelines"])
+    OA["Outline Agent: structured JSON plan + search queries"]
+    LRA["Literature Review Agent: web search, citations, Intro + Related Work"]
+    SWA["Section Writer Agent: Abstract, Methodology, Experiments, Conclusion"]
+    ASM["Assemble Manuscript: stitch sections into Markdown"]
+    REV["Refinement Agent: peer review and iterative improvement"]
+    ROUTE{"route_after_review"}
+    FIN["finalize"]
     OUT(["Final Manuscript + Status"])
 
     IN --> OA
+    OA --> LRA
+    LRA --> SWA
+    SWA --> ASM
+    ASM --> REV
+    REV --> ROUTE
+    ROUTE -->|"needs_refinement, round < max"| REV
+    ROUTE -->|"satisfactory or round >= max"| FIN
     FIN --> OUT
 
     style IN fill:#e1f5fe,stroke:#0288d1
     style OUT fill:#e8f5e9,stroke:#388e3c
     style ROUTE fill:#fff3e0,stroke:#f57c00
-    style Pipeline fill:#fafafa,stroke:#616161
 ```
 
 The critical design choice is the **conditional edge** after the Refinement Agent. Rather than using a fixed number of refinement passes, the router inspects both the agent's verdict and the current round counter, giving the system flexibility to terminate early when the manuscript is satisfactory.
@@ -69,47 +66,33 @@ The critical design choice is the **conditional edge** after the Refinement Agen
 The following diagram shows how Python modules import from each other. `workflow/graph.py` is the composition root that wires all components together.
 
 ```mermaid
-flowchart BT
-    subgraph config_pkg["config/"]
-        settings["settings.py<br/>PipelineConfig + create_llm"]
-    end
-
-    subgraph tools_pkg["tools/"]
-        web_search["web_search.py<br/>WebSearchTool hierarchy"]
-    end
-
-    subgraph prompts_pkg["prompts/"]
-        p1["outline_agent.md"]
-        p2["literature_review_agent.md"]
-        p3["section_writing_agent.md"]
-        p4["refinement_agent.md"]
-    end
-
-    subgraph agents_pkg["agents/"]
-        outline["outline.py"]
-        lit_review["literature_review.py"]
-        section_writer["section_writer.py"]
-        refinement["refinement.py"]
-    end
-
-    subgraph workflow_pkg["workflow/"]
-        wf_state["state.py<br/>PaperState"]
-        wf_graph["graph.py<br/>build_paper_workflow"]
-    end
-
-    outline --> p1
-    lit_review --> p2
-    lit_review --> web_search
-    section_writer --> p3
-    refinement --> p4
+flowchart TD
+    wf_graph["workflow/graph.py: build_paper_workflow"]
+    wf_state["workflow/state.py: PaperState"]
+    settings["config/settings.py: PipelineConfig"]
+    web_search["tools/web_search.py: WebSearchTool"]
+    outline["agents/outline.py"]
+    lit_review["agents/literature_review.py"]
+    section_writer["agents/section_writer.py"]
+    refinement["agents/refinement.py"]
+    p1["prompts/outline_agent.md"]
+    p2["prompts/literature_review_agent.md"]
+    p3["prompts/section_writing_agent.md"]
+    p4["prompts/refinement_agent.md"]
 
     wf_graph --> settings
     wf_graph --> web_search
+    wf_graph --> wf_state
     wf_graph --> outline
     wf_graph --> lit_review
     wf_graph --> section_writer
     wf_graph --> refinement
-    wf_graph --> wf_state
+
+    outline -.-> p1
+    lit_review -.-> p2
+    lit_review --> web_search
+    section_writer -.-> p3
+    refinement -.-> p4
 
     style wf_graph fill:#e3f2fd,stroke:#1565c0
     style settings fill:#fce4ec,stroke:#c62828
@@ -212,8 +195,6 @@ All four agents share a common structural pattern: they accept a `BaseChatModel`
 
 ```mermaid
 classDiagram
-    direction TB
-
     class BaseChatModel {
         <<abstract>>
         +invoke(messages) AIMessage
@@ -294,9 +275,6 @@ classDiagram
 
     WebSearchTool <|-- TavilySearchTool : implements
     WebSearchTool <|-- MockSearchTool : implements
-
-    note for MockSearchTool "Returns pre-defined results\nfrom classic ML papers.\nNo API key needed."
-    note for TavilySearchTool "Wraps tavily-python client.\nRequires TAVILY_API_KEY."
 ```
 
 The `create_search_tool` factory function mirrors `create_llm`:
@@ -325,32 +303,25 @@ Both implementations return `list[dict]` where each dict contains `{title, url, 
 classDiagram
     class PaperState {
         <<TypedDict>>
-        __ Input __
         +str idea_summary
         +str experimental_log
         +str conference_guidelines
-        __ Outline Agent __
         +dict outline
         +list~str~ search_queries
-        __ Literature Review Agent __
         +list~dict~ search_results
         +list~dict~ citations
         +str introduction
         +str related_work
-        __ Section Writer Agent __
         +str abstract
         +str methodology
         +str experiments
         +str conclusion
-        __ Assembly __
         +str full_manuscript
-        __ Refinement Agent __
         +str review_feedback
         +str refined_manuscript
         +int refinement_round
         +int max_refinement_rounds
         +str verdict
-        __ Final __
         +str final_manuscript
         +str status
     }
@@ -366,8 +337,6 @@ This diagram shows the full static structure, including how `build_paper_workflo
 
 ```mermaid
 classDiagram
-    direction LR
-
     class PipelineConfig {
         +str llm_provider
         +str llm_model
@@ -549,7 +518,7 @@ sequenceDiagram
     U->>LG: graph.invoke(initial_state)
     activate LG
 
-    Note over LG,LLM: Step 1 — Outline Generation
+    Note over LG,LLM: Step 1 - Outline Generation
     LG->>OA: __call__(state)
     activate OA
     OA->>LLM: invoke([SystemMsg, HumanMsg])
@@ -557,7 +526,7 @@ sequenceDiagram
     OA-->>LG: outline, search_queries
     deactivate OA
 
-    Note over LG,ST: Step 2 — Literature Search and Review
+    Note over LG,ST: Step 2 - Literature Search and Review
     LG->>LRA: __call__(state)
     activate LRA
     loop For each search query
@@ -570,7 +539,7 @@ sequenceDiagram
     LRA-->>LG: search_results, citations, introduction, related_work
     deactivate LRA
 
-    Note over LG,LLM: Step 3 — Section Writing
+    Note over LG,LLM: Step 3 - Section Writing
     LG->>SWA: __call__(state)
     activate SWA
     SWA->>LLM: invoke([SystemMsg, HumanMsg])
@@ -578,13 +547,13 @@ sequenceDiagram
     SWA-->>LG: abstract, methodology, experiments, conclusion
     deactivate SWA
 
-    Note over LG: Step 4 — Assembly
+    Note over LG: Step 4 - Assembly
     LG->>ASM: assemble_manuscript(state)
     activate ASM
     ASM-->>LG: full_manuscript, refinement_round=0
     deactivate ASM
 
-    Note over LG,LLM: Step 5 — Refinement Loop
+    Note over LG,LLM: Step 5 - Refinement Loop
     loop Review cycle
         LG->>RA: __call__(state)
         activate RA
@@ -599,7 +568,7 @@ sequenceDiagram
         RT-->>LG: refine
     end
 
-    Note over LG: Step 6 — Finalize
+    Note over LG: Step 6 - Finalize
     LG->>FN: finalize(state)
     activate FN
     FN-->>LG: final_manuscript, status
@@ -651,7 +620,7 @@ sequenceDiagram
 
     LRA->>LRA: Format outline + results as user message
     LRA->>LLM: invoke([SystemMsg, HumanMsg])
-    Note over LLM: Synthesize into citations,<br/>Introduction, and Related Work
+    Note over LLM: Synthesize into citations, Introduction, and Related Work
     LLM-->>LRA: JSON response
 
     LRA->>LRA: _parse_json(response)
@@ -687,7 +656,7 @@ sequenceDiagram
     participant FN as finalize
     participant LLM as BaseChatModel
 
-    Note over LG: Scenario A — Pass on First Review
+    Note over LG: Scenario A - Pass on First Review
     rect rgb(232, 245, 233)
         LG->>RA: review (round 1)
         RA->>LLM: invoke(manuscript)
@@ -699,7 +668,7 @@ sequenceDiagram
         FN-->>LG: status=completed
     end
 
-    Note over LG: Scenario B — Refine Once Then Pass
+    Note over LG: Scenario B - Refine Once Then Pass
     rect rgb(255, 243, 224)
         LG->>RA: review (round 1)
         RA->>LLM: invoke(manuscript)
@@ -718,7 +687,7 @@ sequenceDiagram
         FN-->>LG: status=completed
     end
 
-    Note over LG: Scenario C — Max Rounds Exhausted
+    Note over LG: Scenario C - Max Rounds Exhausted
     rect rgb(252, 228, 236)
         LG->>RA: review (round 1)
         RA->>LLM: invoke(manuscript)
@@ -752,8 +721,8 @@ The `route_after_review` function is the conditional routing logic that decides 
 ```mermaid
 flowchart TD
     START(["route_after_review(state)"])
-    V{"verdict ==<br/>satisfactory?"}
-    R{"refinement_round<br/>>= max_rounds?"}
+    V{"verdict == satisfactory?"}
+    R{"refinement_round >= max_rounds?"}
     DONE["Return: done"]
     REFINE["Return: refine"]
 
@@ -790,16 +759,16 @@ All four agents share the same three-tier JSON parsing strategy implemented in t
 flowchart TD
     START(["_parse_json(content)"])
     STRIP["Strip whitespace"]
-    FENCE{"Starts with<br/>triple backtick?"}
-    REMOVE["Remove code fence<br/>delimiters"]
+    FENCE{"Starts with triple backtick?"}
+    REMOVE["Remove code fence delimiters"]
     TRY1["json.loads(text)"]
-    OK1{"Parsed<br/>successfully?"}
-    REGEX["Regex: extract first<br/>JSON object from text"]
-    FOUND{"Match<br/>found?"}
+    OK1{"Parsed successfully?"}
+    REGEX["Regex: extract first JSON object"]
+    FOUND{"Match found?"}
     TRY2["json.loads(match)"]
-    OK2{"Parsed<br/>successfully?"}
+    OK2{"Parsed successfully?"}
     SUCCESS(["Return parsed dict"])
-    FALLBACK(["Return fallback dict<br/>+ log warning"])
+    FALLBACK(["Return fallback dict + log warning"])
 
     START --> STRIP --> FENCE
     FENCE -->|Yes| REMOVE --> TRY1
@@ -857,52 +826,45 @@ Each node in the graph reads a subset of the state and writes a disjoint subset.
 ```mermaid
 flowchart LR
     subgraph Input
-        direction TB
         F_idea["idea_summary"]
         F_exp["experimental_log"]
         F_guide["conference_guidelines"]
     end
 
     subgraph OA_out["Outline Agent writes"]
-        direction TB
         F_outline["outline"]
         F_queries["search_queries"]
     end
 
-    subgraph LRA_out["Literature Review Agent writes"]
-        direction TB
+    subgraph LRA_out["Lit Review Agent writes"]
         F_results["search_results"]
         F_cites["citations"]
         F_intro["introduction"]
         F_rw["related_work"]
     end
 
-    subgraph SWA_out["Section Writer Agent writes"]
-        direction TB
+    subgraph SWA_out["Section Writer writes"]
         F_abs["abstract"]
         F_meth["methodology"]
         F_exp2["experiments"]
         F_conc["conclusion"]
     end
 
-    subgraph ASM_out["assemble_manuscript writes"]
-        direction TB
+    subgraph ASM_out["assemble writes"]
         F_full["full_manuscript"]
         F_round["refinement_round = 0"]
         F_max["max_refinement_rounds"]
     end
 
     subgraph RA_out["Refinement Agent writes"]
-        direction TB
         F_feedback["review_feedback"]
         F_refined["refined_manuscript"]
         F_verdict["verdict"]
         F_round2["refinement_round++"]
-        F_full2["full_manuscript (updated)"]
+        F_full2["full_manuscript updated"]
     end
 
     subgraph FIN_out["finalize writes"]
-        direction TB
         F_final["final_manuscript"]
         F_status["status"]
     end

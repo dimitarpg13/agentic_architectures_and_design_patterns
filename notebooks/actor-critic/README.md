@@ -25,18 +25,6 @@ A **code generation** use case serves as the running example throughout: an Acto
 | 7 | [Limitations & Enhancements](07_limitations_and_enhancements.md) | 10 identified limitations (pass rate, instruction-following, latency, sandbox isolation, provider coupling), 10 enhancement proposals with Mermaid diagrams (graduated validation, instruction distillation, async streaming, multi-agent routing, process sandbox, cross-session memory, model-agnostic backend, observability dashboard), prioritized Gantt roadmap |
 | 8 | [Causal Nash Equilibrium Convergence](08_causal_nash_equilibrium_convergence.md) | Formal game-theoretic foundations: Nash Equilibrium in MARL (Nash-Q, satisficing paths, ATMGs), confounding problem with structural causal model, four causal mechanisms for convergence (interventional best responses, game decomposition via d-separation, counterfactual credit assignment, Causal SHAP verification), complete walkthrough comparing standard MARL oscillation vs causal convergence, implementation architecture with pseudocode |
 
-### User Input & System Prompt Construction
-
-| Document | Description |
-|---|---|
-| [User Input](user_input.md) | How user input integrates with the Actor-Critic workflow — from unstructured natural language through context assembly (`PromptBuilder`), tool specifications, SQL generation, validation guardrails, and result size management. Defines the `prompts/` and `usecases/<slug>/` directory conventions for `DOMAIN_RULES.md` and `DATA_DICTIONARY.md` |
-
-### Implementation Demos
-
-| Demo | Stack | Description |
-|---|---|---|
-| [SQL Generation](sql_generation/) | LangGraph · Claude · Gemini · Vertex AI · LangSmith | Working dual-agent workflow for validated SQL query generation against the TPC-H benchmark dataset. Actor (Claude on Vertex AI Model Garden) generates SQL from natural language; Critic (Gemini on Vertex AI) validates against schema, logic, domain rules, and best practices. Includes a runnable demo notebook, 77 unit/integration tests, and three secret-management strategies (.env, hardcoded, Secret Manager). See [`sql_generation/README.md`](sql_generation/README.md) for GCP deployment and tracing instructions |
-
 ---
 
 ## Design Principles
@@ -55,18 +43,92 @@ The Actor-Critic pattern is built on five core principles:
 
 ---
 
+## Use Cases & Applicability
+
+The Actor-Critic pattern applies whenever an LLM produces an artifact that can be **independently verified against a rubric**. The key requirement is that validation must be cheaper or more reliable than generation — if the Critic is just as likely to be wrong as the Actor, the pattern adds cost without value.
+
+### Strongly Suited — Critic Can Verify Objectively
+
+These are the "sweet spot": the Critic has access to ground truth or deterministic checks, so its judgments are highly reliable.
+
+| Use Case | Actor Produces | Critic Validates Against | Salvageable Example | Non-Salvageable Example |
+|---|---|---|---|---|
+| **SQL Generation** | SQL queries from natural language | Schema validation, query execution, result sanity | Missing WHERE clause, wrong column alias | Wrong table entirely, hallucinated column |
+| **Code Generation** | Code from specifications | Syntax check, test suite, static analysis | Missing import, style violation | Wrong algorithm, hallucinated API |
+| **Infrastructure-as-Code** | Terraform/CloudFormation | Plan validation, policy checks (Sentinel/OPA) | Missing tag, wrong instance size | Wrong provider, circular dependency |
+| **API Request Construction** | API calls from intent | Schema validation, endpoint existence, auth check | Wrong parameter name | Fabricated endpoint |
+| **Data Transformation** | ETL logic, Spark jobs | Input/output schema match, row count validation | Wrong column type cast | Wrong join key |
+| **Test Generation** | Unit/integration tests | Tests compile, cover specified requirements, pass on known-good code | Missing edge case | Tests for wrong function signature |
+
+The `sql_generation/` reference implementation in this folder is a textbook instance — the Critic can actually **execute** the SQL and verify results against expected output.
+
+### Well Suited — Critic Can Verify with Structured Rubric
+
+The Critic cannot run a deterministic check, but the validation criteria are well-defined enough for a structured rubric to work.
+
+| Use Case | Actor Produces | Critic Validates Against | Key Rubric Dimensions |
+|---|---|---|---|
+| **Technical Documentation** | API docs, runbooks, architecture docs | Source code accuracy, completeness, formatting standards | All endpoints documented? Parameter types correct? Examples compile? |
+| **Compliance Reports** | Regulatory filings, audit responses | Regulation text, policy documents | Every required section present? All claims traced to evidence? |
+| **Contract/Legal Drafting** | Contract clauses, terms | Template library, legal requirements | Required clauses included? Defined terms used consistently? |
+| **Incident Postmortems** | Root cause analysis, timeline | Monitoring data, logs, alert history | Timeline matches logs? Action items are SMART? |
+| **Planning & Task Decomposition** | Project plans, sprint breakdowns | Requirements doc, dependency graph | All requirements covered? Dependencies realistic? No circular deps? |
+| **Troubleshooting Guides** | Diagnostic steps, fix procedures | Known issue database, system architecture | Steps are actionable? Covers all listed symptoms? Fix doesn't break other components? |
+| **Email/Communication Drafting** | Professional emails, executive briefs | Tone guidelines, factual accuracy against source data | Appropriate tone? All data points sourced? No speculation? |
+| **RAG Response Validation** | Grounded answers from retrieved context | Citation verification, figure matching, entity consistency | All citations valid? Figures match sources? No entity confusion? |
+
+### Moderately to Poorly Suited — Diminishing Returns
+
+| Use Case | Suitability | Why |
+|---|---|---|
+| **Creative Writing / Marketing Copy** | Moderate | Critic can check brand guidelines and factual claims, but subjective quality is hard to rubric-ize; Critic may "improve" good writing into bland writing |
+| **Data Analysis / Insights** | Moderate | Critic can re-run calculations and verify chart-data consistency, but interpretation and "so what" insights are subjective |
+| **Translation** | Moderate | Critic can check terminology consistency and formatting, but fluency and style judgment requires near-human capability |
+| **Chatbot Conversation Design** | Moderate | Critic can verify flow coverage and fallback handling, but conversational quality is subjective |
+| **Open-ended brainstorming** | Poor | No objective rubric; the Critic would just be a second opinion, not a validator |
+| **Summarization** (without source) | Poor | No ground truth to validate against; Critic and Actor have the same information |
+| **Image/audio generation** | Poor | Verification requires perceptual judgment that text-based Critics cannot perform |
+
+### The Structural Pattern That Makes It Work
+
+Across all well-suited use cases, the same structure holds:
+
+```mermaid
+flowchart TD
+    A["Actor output"] --> B["Can be decomposed into<br/>checkable claims or properties"]
+    B --> C["Each claim/property has a<br/>ground truth or rubric"]
+    C --> D["Verification is cheaper<br/>than generation"]
+    D --> E["Errors are classifiable as<br/>salvageable vs non-salvageable"]
+    E --> F["Actor-Critic delivers<br/>high value"]
+
+    style A fill:#e8f4f8,stroke:#2980b9
+    style F fill:#eafaf1,stroke:#27ae60,stroke-width:2px
+```
+
+When this structure holds, the pattern delivers its highest value. When it does not — when the output is holistic, subjective, or cannot be decomposed — the Critic degrades into an expensive second opinion rather than a quality gate.
+
+### When the Pattern Is Especially Valuable
+
+Drawing from the convergence analysis in [Document 06](06_adversarial_dynamics_and_convergence.md) and [Document 08](08_causal_nash_equilibrium_convergence.md), the pattern is most valuable when:
+
+1. **The cost of an undetected error is high** — executive briefings, production SQL, infrastructure configuration, compliance reports
+2. **Cross-model diversity is achievable** — using different model families for Actor and Critic reduces shared blind spots
+3. **The correction loop converges** — most errors are fixable in 1-2 iterations; if it takes 3+ attempts regularly, the Actor needs better prompting rather than more Critic cycles
+4. **Salvageable errors dominate** — the ~55% salvageable rate observed in production (see [Document 07](07_limitations_and_enhancements.md)) means the system is operating in its ideal regime, where the Actor is directionally correct but imprecise
+
+---
+
 ## Reading Order
 
 For a complete understanding, read the documents in order (1 → 8). For specific topics:
 
+- **"What can I use this pattern for?"** — [Use Cases & Applicability](#use-cases--applicability) (above)
 - **"How does the Actor-Critic loop work?"** — Start with [02](02_actor_critic_workflow.md), then [03](03_critic_validation_system.md)
-- **"How does user input get translated to SQL?"** — [user_input.md](user_input.md), then the [sql_generation/](sql_generation/) demo
 - **"How are tools designed?"** — [04](04_tool_calling_system.md)
 - **"Why do correction loops sometimes fail?"** — [05](05_guardrail_design_and_causal_analysis.md)
 - **"Is this truly adversarial?"** — [06](06_adversarial_dynamics_and_convergence.md)
 - **"What should I improve first?"** — [07](07_limitations_and_enhancements.md)
 - **"Why does causal inference enable Nash Equilibrium convergence?"** — [08](08_causal_nash_equilibrium_convergence.md)
-- **"Show me a working implementation"** — [sql_generation/](sql_generation/) with its [README](sql_generation/README.md) and [demo notebook](sql_generation/demo_sql_generation.ipynb)
 
 ---
 
@@ -83,10 +145,4 @@ All diagrams use [Mermaid](https://mermaid.js.org/) syntax and render natively i
 
 ---
 
-## Prompt to Generate Specific Agentic Workflow Implementing Actor-Critic Paradigm
-
-**SQL Generation**
-
-In folder `actor-critic/sql_generation/` could you create me an example dual agent workflow for sql query generation utilizing complex analytical expressions based on user supplied information in a query? The critic should be doing error correction of the generated analytical expressions following the principles and workflows discussed in the markdowns in folder `actor-critic`. The whole workflow should be deployable on GCP. The two agents should use different LLM models - say the generator should use Antrhopic's _Claude_ while the critic should use Google _Gemini_ inside Vertex AI ecosystem. The workflow can contain multiple modules spread into subfolders of `actor-critic/sql_generation` and should have at least one demo notebook in the folder `actor-critic/sql_generation` which I should be able to run from within Vertex AI (i guess using Vertex AI Workbench). I should be able supply keys for the LLMs used in the agents through `.env` file, hardcoded in a demo notebook showing how the workflow works, or using _Google Cloud Secret Manager_. In terms of agentic framework to implement this I am flexible - you could use LangGraph as I am familiar with it. The user input to the demo notebook should be user request for creating a SQL query which meets certain specified objectives and format specifications in a set of predefined markdown documents which will be available to the workflow at the time of the user query. For details of the user input please read the markdown in `actor-critic/user_input.md` which explains what the user input should be used in general. Try to reuse the subfolder structure explained in the section _"Step 2: System Prompt Construction - Grounding the LLM"_. Assume that such files are created in the specified subfolders of `actor-critic/sql_generation`. `DOMAIN_RULES.md` and `DATA_DICTIONARY.md` - we will create those later based on the familiar RDBMS dataset **TPC-H**. So  the user will ask questions about how to obtain particular information from the TPC-H tables and the workflow should generate SQL query delivering the data. If we are using LangGraph as an orchestration framework for this workflow then the tracing and observability can be provided by LangSmith as it is already integrated with Vertex AI ecosystem. Log messages indicating the execution of different stages of the workflow by using LangSmith tracing and osbervability functionality. Create a `README.md` inside `actor-critic/sql_generation` which details how to run this workflow inside GCP and trace the logged messages thereby identifying the sequential steps of its execution. 
-
-*Generated: April 2026*
+*Generated: March 2026*
